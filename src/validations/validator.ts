@@ -46,7 +46,7 @@ const propertySchema = Joi.object({
   price: Joi.number().required(),
   location: Joi.string().required(),
   size: Joi.string().required(),
-  bedrroms: Joi.string().optional(),
+  bedrooms: Joi.string().optional(),
   parking: Joi.string().optional(),
   propertyType: Joi.string()
     .valid("Apartment", "House", "Villa", "Plot")

@@ -11,13 +11,14 @@ import { upload } from "../../middleware/upload";
 
 const router = Router();
 
-router.post("/add", validatePropertyBody, upload.array("image"), addProperty);
+// PROPERTIES API'S ENDPOINTS
+router.post("/add", validatePropertyBody, upload.array("images"), addProperty);
 router.get("/get", getProperties);
 router.get("/get/:id", getPropertyDataById);
 router.put(
   "/update/:id",
   validatePropertyBody,
-  upload.array("image"),
+  upload.array("images"),
   updatePropertyById
 );
 router.delete("/delete/:id", deletePropery);

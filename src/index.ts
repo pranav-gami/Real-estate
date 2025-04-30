@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import * as dotenv from "dotenv";
-import apiRouter from "./routes/apiRoutes";
+import apiRouter from "./routes/routes";
 import connectDB from "./config/db";
 
 dotenv.config();

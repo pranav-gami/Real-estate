@@ -32,6 +32,18 @@ const bookingSchema = new Schema<IBooking>({
     enum: ["PENDING", "PAID", "FAILED"],
     default: "PENDING",
   },
+},
+{
+  toJSON: {
+    transform(_doc, ret) {
+      delete ret.__v;
+    },
+  },
+  toObject: {
+    transform(_doc, ret) {
+      delete ret.__v;
+    },
+  },
 });
 
 const Booking = mongoose.model<IBooking>("Booking", bookingSchema);

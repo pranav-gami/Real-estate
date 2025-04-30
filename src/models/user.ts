@@ -11,20 +11,34 @@ export interface IUser extends Document {
   isActive?: Boolean;
 }
 
-const userSchema = new Schema<IUser>({
-  name: { type: String, required: true, trim: true },
-  email: { type: String, required: true, unique: true, lowercase: true },
-  password: { type: String, required: true },
-  phone: { type: String, unique: true },
-  city: { type: String },
-  image: { type: String },
-  role: {
-    type: String,
-    enum: ["USER", "ADMIN", "AGENT"],
-    default: "USER",
+const userSchema = new Schema<IUser>(
+  {
+    name: { type: String, required: true, trim: true },
+    email: { type: String, required: true, unique: true, lowercase: true },
+    password: { type: String, required: true },
+    phone: { type: String, unique: true },
+    city: { type: String },
+    image: { type: String },
+    role: {
+      type: String,
+      enum: ["USER", "ADMIN", "AGENT"],
+      default: "USER",
+    },
+    isActive: { type: Boolean, default: false },
   },
-  isActive: { type: Boolean, default: false },
-});
+  {
+    toJSON: {
+      transform(_doc, ret) {
+        delete ret.__v;
+      },
+    },
+    toObject: {
+      transform(_doc, ret) {
+        delete ret.__v;
+      },
+    },
+  }
+);
 
 const User = mongoose.model<IUser>("User", userSchema);
 export default User;

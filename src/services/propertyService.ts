@@ -17,10 +17,15 @@ export const createProperty = async (req: Request) => {
       parking,
       propertyType,
       status,
-      images,
       ownerId,
       addressId,
     } = req.body;
+
+    const files = req.files as Express.Multer.File[];
+    const images = files.map((file) => file.filename);
+    if (images.length < 2) {
+      throw new Error("Atleast two images required..");
+    }
 
     // Validate required fields
     if (
@@ -31,7 +36,6 @@ export const createProperty = async (req: Request) => {
       !size ||
       !propertyType ||
       !status ||
-      !images ||
       !ownerId ||
       !addressId
     ) {

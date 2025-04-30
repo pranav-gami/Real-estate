@@ -6,11 +6,25 @@ export interface IAddress extends Document {
   country: string;
 }
 
-const addressSchema = new Schema<IAddress>({
-  city: { type: String, required: true, unique: true },
-  state: { type: String, required: true },
-  country: { type: String, required: true },
-});
+const addressSchema = new Schema<IAddress>(
+  {
+    city: { type: String, required: true, unique: true },
+    state: { type: String, required: true },
+    country: { type: String, required: true },
+  },
+  {
+    toJSON: {
+      transform(_doc, ret) {
+        delete ret.__v;
+      },
+    },
+    toObject: {
+      transform(_doc, ret) {
+        delete ret.__v;
+      },
+    },
+  }
+);
 
 const Address = mongoose.model<IAddress>("Address", addressSchema);
 export default Address;

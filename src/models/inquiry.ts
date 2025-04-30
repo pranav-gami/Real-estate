@@ -28,7 +28,19 @@ const inquirySchema = new Schema<IInquiry>(
       default: "PENDING",
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    toJSON: {
+      transform(_doc, ret) {
+        delete ret.__v;
+      },
+    },
+    toObject: {
+      transform(_doc, ret) {
+        delete ret.__v;
+      },
+    },
+  }
 );
 
 const Inquiry = mongoose.model<IInquiry>("Inquiry", inquirySchema);

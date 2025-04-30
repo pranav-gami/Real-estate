@@ -23,7 +23,7 @@ const propertySchema = new Schema<IProperty>(
     location: { type: String, required: true },
     size: { type: String, required: true },
     bedrooms: { type: Number },
-    parking: { type: Boolean },
+    parking: { type: Number },
     propertyType: {
       type: String,
       enum: ["Apartment", "House", "Villa", "Plot"],
@@ -46,7 +46,19 @@ const propertySchema = new Schema<IProperty>(
       required: true,
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    toJSON: {
+      transform(_doc, ret) {
+        delete ret.__v;
+      },
+    },
+    toObject: {
+      transform(_doc, ret) {
+        delete ret.__v;
+      },
+    },
+  }
 );
 
 const Property = mongoose.model<IProperty>("Property", propertySchema);
