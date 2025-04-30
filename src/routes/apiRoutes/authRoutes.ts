@@ -1,11 +1,15 @@
 // import { Router } from "express";
-// import { validateLoginCredentials } from ";
-// import { loginAdmin, loginUser, logoutUser } from ";
+// import {
+//   loginAdmin,
+//   loginUser,
+//   logoutUser,
+// } from "../../controller/authController";
+// // import { validateLoginCredentials } from ";
 
 // const router = Router();
 
-// router.post("/admin/login", validateLoginCredentials, loginAdmin);
-// router.post("/user/login", validateLoginCredentials, loginUser);
+// router.post("/admin/login", loginAdmin);
+// router.post("/user/login", loginUser);
 // router.post("/logout", logoutUser);
 
 // export default router;

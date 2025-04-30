@@ -1,7 +1,7 @@
 import { Request } from "express";
-import Property from "../models/property";
-import Address from "../models/address";
-import User from "../models/user";
+import Property from "../models/property.model";
+import Address from "../models/address.model";
+import User from "../models/user.model";
 
 // CREATE PROPERTY SERVICE
 
@@ -67,8 +67,8 @@ export const createProperty = async (req: Request) => {
     };
 
     if (propertyType !== "Plot") {
-      newPropertyData.bedrooms = bedrooms;
-      newPropertyData.parking = parking;
+      newPropertyData.bedrooms = parseInt(bedrooms);
+      newPropertyData.parking = parseInt(parking);
     }
     const newProperty = await Property.create(newPropertyData);
     return newProperty;
@@ -87,7 +87,7 @@ export const getPropertyData = async (req: Request, all: Boolean) => {
   try {
     if (all) {
       const propertyData = await Property.find({});
-      if (!propertyData) {
+      if (propertyData.length == 0) {
         throw new Error("Property model is Empty..");
       }
       return propertyData;
@@ -112,7 +112,7 @@ export const getPropertyData = async (req: Request, all: Boolean) => {
 export const updatePropertyData = async (req: Request) => {
   try {
     const propertyId = req.params.id;
-    const isExists = await User.findById(propertyId);
+    const isExists = await Property.findById(propertyId);
     if (!isExists) {
       throw new Error("Property you are trying to update is not found !");
     }
@@ -126,7 +126,6 @@ export const updatePropertyData = async (req: Request) => {
       parking,
       propertyType,
       status,
-      images,
       ownerId,
       addressId,
     } = req.body;
@@ -140,11 +139,16 @@ export const updatePropertyData = async (req: Request) => {
       !size ||
       !propertyType ||
       !status ||
-      !images ||
       !ownerId ||
       !addressId
     ) {
       throw new Error("Missing required fields..");
+    }
+
+    const files = req.files as Express.Multer.File[];
+    const images = files.map((file) => file.filename);
+    if (images.length < 2) {
+      throw new Error("Atleast two images required..");
     }
 
     //Validate referenced ID's existance
@@ -202,7 +206,7 @@ export const deletePropertyById = async (req: Request) => {
     if (err instanceof Error) {
       throw new Error(err.message);
     } else {
-      throw new Error("Unknown error occurred while updating Property..");
+      throw new Error("Unknown error occurred while Deleting Property..");
     }
   }
 };

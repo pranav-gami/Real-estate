@@ -11,7 +11,11 @@ import {
 export const addUser = async (req: Request, res: Response) => {
   try {
     const user = await createUser(req);
-    res.status(200).json({ success: true, data: user });
+    res.status(200).json({
+      success: true,
+      data: user,
+      message: "Register Successfully",
+    });
   } catch (error) {
     if (error instanceof Error) {
       res.status(400).json({ success: false, message: error.message });

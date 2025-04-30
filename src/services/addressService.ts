@@ -1,17 +1,18 @@
 import { Request } from "express";
-import Address from "../models/address";
+import Address from "../models/address.model";
 
 // ADD NEW ADDRESS SERVICE
 
 export const insertAddress = async (req: Request) => {
   try {
-    const { city, state, country } = req.body;
+    const { city, district, state, country } = req.body;
     const isExists = await Address.findOne({ city });
     if (isExists) {
       throw new Error("Address already Exists!!");
     }
     const newAddress = new Address({
       city,
+      district,
       state,
       country,
     });
@@ -32,7 +33,7 @@ export const getAddressData = async (req: Request, all: Boolean) => {
   try {
     if (all) {
       const addressData = await Address.find({});
-      if (!addressData) {
+      if (addressData.length == 0) {
         throw new Error("Address model is Empty!");
       }
       return addressData;
@@ -61,12 +62,13 @@ export const updateAddressData = async (req: Request) => {
     if (!isExists) {
       throw new Error("Address you are trying to update is not found!");
     }
-    const { city, state, country } = req.body;
+    const { city, district, state, country } = req.body;
     const address = await Address.findByIdAndUpdate(
       addrId,
       {
         $set: {
           city,
+          district,
           state,
           country,
         },

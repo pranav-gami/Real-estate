@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { validateAddressBody } from "../../validations/validator";
+import {
+  validateParamsID,
+  validateAddressBody,
+} from "../../validations/validator";
 import {
   addAddress,
   getAllAddressData,
@@ -12,8 +15,13 @@ const router = Router();
 
 router.post("/add", validateAddressBody, addAddress);
 router.get("/get", getAllAddressData);
-router.get("/get/:id", getAddressDataById);
-router.put("/update/:id", validateAddressBody, updateAddressById);
-router.delete("/delete/:id", deleteAdressdById);
+router.get("/get/:id", validateParamsID, getAddressDataById);
+router.put(
+  "/update/:id",
+  validateParamsID,
+  validateAddressBody,
+  updateAddressById
+);
+router.delete("/delete/:id", validateParamsID, deleteAdressdById);
 
 export default router;

@@ -1,6 +1,6 @@
 import { Request } from "express";
 import bcrypt from "bcrypt";
-import User from "../models/user";
+import User from "../models/user.model";
 
 // CREATE-USER SERVICE
 export const createUser = async (req: Request) => {
@@ -43,7 +43,7 @@ export const getUserData = async (req: Request, all: Boolean) => {
     let userData;
     if (all) {
       userData = await User.find({});
-      if (!userData) {
+      if (userData.length == 0) {
         throw new Error("User model is Empty..");
       }
     } else {

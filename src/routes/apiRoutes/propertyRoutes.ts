@@ -6,21 +6,25 @@ import {
   updatePropertyById,
   deletePropery,
 } from "../../controller/propertyController";
-import { validatePropertyBody } from "../../validations/validator";
-import { upload } from "../../middleware/upload";
+import {
+  validateParamsID,
+  validatePropertyBody,
+} from "../../validations/validator";
+import { upload } from "../../middleware/uploadMulter";
 
 const router = Router();
 
 // PROPERTIES API'S ENDPOINTS
 router.post("/add", validatePropertyBody, upload.array("images"), addProperty);
 router.get("/get", getProperties);
-router.get("/get/:id", getPropertyDataById);
+router.get("/get/:id", validateParamsID, getPropertyDataById);
 router.put(
   "/update/:id",
+  validateParamsID,
   validatePropertyBody,
   upload.array("images"),
   updatePropertyById
 );
-router.delete("/delete/:id", deletePropery);
+router.delete("/delete/:id", validateParamsID, deletePropery);
 
 export default router;

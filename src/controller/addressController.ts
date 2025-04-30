@@ -25,8 +25,8 @@ export const addAddress = async (req: Request, res: Response) => {
 
 export const getAllAddressData = async (req: Request, res: Response) => {
   try {
-    const addrData = await getAddressData(req, true);
-    res.status(200).json({ success: true, data: addrData });
+    const addressData = await getAddressData(req, true);
+    res.status(200).json({ success: true, data: addressData });
   } catch (error) {
     if (error instanceof Error) {
       res.status(400).json({ success: false, message: error.message });
