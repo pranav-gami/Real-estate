@@ -7,19 +7,17 @@ import User from "../models/user.model";
 
 export const createInquiry = async (req: Request) => {
   try {
-    const { propertyId, userId, ownerId, message } = req.body;
+    const { propertyId, userId, message } = req.body;
 
     // CONDITIONS AND VALIDATIONS
-    if (userId == ownerId) {
+    const data = await Property.findById(propertyId);
+
+    if (userId == data?.ownerId) {
       throw new Error("Buyer and Seller Can't be Same");
     }
     const userExists = await User.findById(userId);
     if (!userExists) {
       throw new Error("User not found.");
-    }
-    const ownerExists = await User.findById(ownerId);
-    if (!ownerExists) {
-      throw new Error("Owner not found.");
     }
     const propertyExists = await Property.findById(propertyId);
     if (!propertyExists) {
@@ -29,7 +27,6 @@ export const createInquiry = async (req: Request) => {
     const inquiry = await Inquiry.create({
       propertyId,
       userId,
-      ownerId,
       message,
     });
     return inquiry;
@@ -79,34 +76,35 @@ export const updateInquiryData = async (req: Request) => {
       throw new Error("Inquiry you are trying to update is not found !");
     }
 
-    const { propertyId, userId, ownerId, message } = req.body;
+    const { propertyId, userId, message } = req.body;
 
     // CONDITIONS AND VALIDATIONS CHECK
-    if (userId == ownerId) {
+    const data = await Property.findById(propertyId);
+    if (userId == data?.ownerId) {
       throw new Error("Buyer and Seller Can't be Same!");
     }
     const userExists = await User.findById(userId);
     if (!userExists) {
       throw new Error("User not found !");
     }
-    const ownerExists = await User.findById(ownerId);
-    if (!ownerExists) {
-      throw new Error("Owner not found !");
-    }
     const propertyExists = await Property.findById(propertyId);
     if (!propertyExists) {
       throw new Error("Property not found !");
     }
 
-    const response = await Inquiry.findByIdAndUpdate(inquiryId, {
-      $set: { propertyId, userId, ownerId, message },
-    });
+    const response = await Inquiry.findByIdAndUpdate(
+      inquiryId,
+      {
+        $set: { propertyId, userId, message },
+      },
+      { new: true }
+    );
     return response;
   } catch (err) {
     if (err instanceof Error) {
       throw new Error(err.message);
     } else {
-      throw new Error("Unknown error occured in Updating Inquiry..");
+      throw new Error("Unknown error occured in Updating Inquiry...");
     }
   }
 };
@@ -121,9 +119,13 @@ export const updateStatus = async (req: Request) => {
       throw new Error("Inquiry you are trying to update is not found !");
     }
     const { status } = req.body;
-    const response = await Inquiry.findByIdAndUpdate(inquiryId, {
-      $set: { status },
-    });
+    const response = await Inquiry.findByIdAndUpdate(
+      inquiryId,
+      {
+        $set: { status },
+      },
+      { new: true }
+    );
     return response;
   } catch (err) {
     if (err instanceof Error) {

@@ -1,5 +1,5 @@
 import { Request } from "express";
-import Address from "../models/address.model";
+import Address from "../models/propertyAddress.model";
 
 // ADD NEW ADDRESS SERVICE
 

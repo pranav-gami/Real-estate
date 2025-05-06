@@ -4,6 +4,7 @@ import {
   deleteUser,
   getUserData,
   updateUserData,
+  updateUserStatus,
 } from "../services/userService";
 
 // CREATE USER CONTROLLER
@@ -70,7 +71,20 @@ export const updateUserById = async (req: Request, res: Response) => {
   }
 };
 
-// UPDATE-USER CONTROLLER
+export const updateStatus = async (req: Request, res: Response) => {
+  try {
+    const user = await updateUserStatus(req);
+    res.status(200).json({ success: true, data: user });
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(400).json({ success: false, message: error.message });
+    } else {
+      res.status(400).json({ success: false, message: "Some Error Occured!!" });
+    }
+  }
+};
+
+// DELETE-USER CONTROLLER
 
 export const deleteUserById = async (req: Request, res: Response) => {
   try {

@@ -9,7 +9,7 @@ import {
 
 // ADD-BOOKING CONTROLLER
 
-export const addBooking = async (req: Request, res: Response) => {  
+export const addBooking = async (req: Request, res: Response) => {
   try {
     const book = await createBooking(req);
     res.status(200).json({
@@ -23,7 +23,6 @@ export const addBooking = async (req: Request, res: Response) => {
 };
 
 // GET BOOKING-DATA CONTROLLER
-
 export const getBookings = async (req: Request, res: Response) => {
   try {
     const bookingData = await getBookingData(req, true);

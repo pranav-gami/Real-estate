@@ -1,6 +1,6 @@
 import { Request } from "express";
 import Property from "../models/property.model";
-import Address from "../models/address.model";
+import Address from "../models/propertyAddress.model";
 import User from "../models/user.model";
 
 // CREATE PROPERTY SERVICE
@@ -72,12 +72,8 @@ export const createProperty = async (req: Request) => {
     }
     const newProperty = await Property.create(newPropertyData);
     return newProperty;
-  } catch (err) {
-    if (err instanceof Error) {
-      throw new Error(err.message);
-    } else {
-      throw new Error("Unknown error occured in Creating Property..");
-    }
+  } catch (err: any) {
+    throw new Error(err.message);
   }
 };
 
@@ -86,24 +82,25 @@ export const createProperty = async (req: Request) => {
 export const getPropertyData = async (req: Request, all: Boolean) => {
   try {
     if (all) {
-      const propertyData = await Property.find({});
+      const propertyData = await Property.find({}).populate(
+        "addressId",
+        "city district state country"
+      );
       if (propertyData.length == 0) {
         throw new Error("Property model is Empty..");
       }
       return propertyData;
     }
     const propertyId = req.params.id;
-    const propertyData = await Property.findById(propertyId);
+    const propertyData = await Property.findById(propertyId)
+      .populate("ownerID", "name phone")
+      .populate("addressId", "city district state country");
     if (!propertyData) {
       throw new Error("Property not Found !");
     }
     return propertyData;
-  } catch (err) {
-    if (err instanceof Error) {
-      throw new Error(err.message);
-    } else {
-      throw new Error("Unknown error occured..");
-    }
+  } catch (err: any) {
+    throw new Error(err.message);
   }
 };
 
@@ -179,9 +176,13 @@ export const updatePropertyData = async (req: Request) => {
       updatePropertyData.bedrooms = bedrooms;
       updatePropertyData.parking = parking;
     }
-    const response = await Property.findByIdAndUpdate(propertyId, {
-      $set: updatePropertyData,
-    });
+    const response = await Property.findByIdAndUpdate(
+      propertyId,
+      {
+        $set: updatePropertyData,
+      },
+      { new: true }
+    );
     return response;
   } catch (err) {
     if (err instanceof Error) {

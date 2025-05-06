@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, Types } from "mongoose";
 
 export interface IProperty extends Document {
   title: string;
@@ -11,8 +11,8 @@ export interface IProperty extends Document {
   propertyType: "Apartment" | "House" | "Villa" | "Plot";
   status: "Sale" | "Rent" | "Sold" | "Rented";
   images: string[];
-  ownerId: mongoose.Types.ObjectId;
-  addressId: mongoose.Types.ObjectId;
+  ownerId: Types.ObjectId;
+  addressId: Types.ObjectId;
 }
 
 const propertySchema = new Schema<IProperty>({

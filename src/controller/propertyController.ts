@@ -42,7 +42,7 @@ export const getProperties = async (req: Request, res: Response) => {
   }
 };
 
-// CATEGORYDATA-ID CONTROLLER
+// PROPERTY DATA-ID CONTROLLER
 
 export const getPropertyDataById = async (req: Request, res: Response) => {
   try {

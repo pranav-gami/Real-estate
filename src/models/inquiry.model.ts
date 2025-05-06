@@ -3,7 +3,6 @@ import mongoose, { Schema, Document } from "mongoose";
 export interface IInquiry extends Document {
   propertyId: mongoose.Types.ObjectId;
   userId: mongoose.Types.ObjectId; // BUYER
-  ownerId: mongoose.Types.ObjectId; // SELLER OR OWNER
   message: string;
   status: "PENDING" | "RESPONDED";
 }
@@ -15,11 +14,6 @@ const inquirySchema = new Schema<IInquiry>({
     required: true,
   },
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  ownerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,

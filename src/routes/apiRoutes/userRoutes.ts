@@ -4,6 +4,7 @@ import {
   deleteUserById,
   getAllUserData,
   getUserDataById,
+  updateStatus,
   updateUserById,
 } from "../../controller/userController";
 import {
@@ -24,6 +25,7 @@ router.put(
   upload.single("image"),
   updateUserById
 );
+router.put("/updatestatus/:id", validateParamsID, updateStatus);
 router.delete("/delete/:id", validateParamsID, deleteUserById);
 
 export default router;

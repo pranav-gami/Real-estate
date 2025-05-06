@@ -1,24 +1,31 @@
 import { Router } from "express";
 import {
-  addBooking,
-  getBookings,
-  getBookingDataById,
-  updateBookingById,
-  updateBookingStatus,
-  deleteBookingById,
-} from "../../controller/bookingController";
+  addInquiry,
+  getInquiriesData,
+  getInquiryDataById,
+  deleteInquiry,
+  updateInquiryById,
+  updateInquiryStatus,
+} from "../../controller/inquiryController";
 import {
   validateParamsID,
-  validateBookingBody,
+  validateInquiryBody,
 } from "../../validations/validator";
 
 const router = Router();
 
-router.post("/add", validateBookingBody, addBooking);
-router.get("/get", getBookings);
-router.get("/get/:id", validateParamsID, getBookingDataById);
-router.put("/update/:id", validateParamsID, updateBookingById);
-router.put("/updatestatus/:id", validateParamsID, updateBookingStatus);
-router.delete("/delete/:id", validateParamsID, deleteBookingById);
+// INQUIRY API'S ENDPOINTS(Routes)
+
+router.post("/add", validateInquiryBody, addInquiry);
+router.get("/get", getInquiriesData);
+router.get("/get/:id", validateParamsID, getInquiryDataById);
+router.put(
+  "/update/:id",
+  validateParamsID,
+  validateInquiryBody,
+  updateInquiryById
+);
+router.put("/updatestatus/:id", validateParamsID, updateInquiryStatus);
+router.delete("/delete/:id", validateParamsID, deleteInquiry);
 
 export default router;

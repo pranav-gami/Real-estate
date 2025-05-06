@@ -1,0 +1,397 @@
+/* Container layout */
+
+.property-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.search-group {
+    position: relative;
+    display: flex;
+    flex: 1;
+    min-width: 300px;
+}
+
+.search-input-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 6px 10px;
+    background-color: #fff;
+}
+
+.search-input-wrapper i {
+    font-size: 16px;
+    color: #adb5bd;
+    margin-right: 8px;
+}
+
+.search-input-wrapper input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    flex: 1;
+}
+
+.search_btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    align-items: center;
+    background-color: #6366f1;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.search_btn i {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.search_btn:hover {
+    background-color: #5d60f8;
+}
+
+:root {
+    --primary-color: #2563eb;
+    /* blue-600 */
+    --light-bg: #f1f5f9;
+    /* slate-100 */
+    --border-color: #d1d5db;
+    /* gray-300 */
+    --text-color: #334155;
+    /* slate-700 */
+    --radius: 8px;
+    --padding: 10px 14px;
+}
+
+.filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.filter-select {
+    background-color: #f1f5f9;
+    color: #334155;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 9px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.2s ease;
+    min-width: 110px;
+}
+
+.filter-select:hover,
+.search-input-wrapper:hover,
+.filter-select:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(63, 99, 177, 0.3);
+}
+
+/* PROPERTY CARDS SECTIONS */
+
+.property__menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.property_card {
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    background: #fff;
+    position: relative;
+}
+
+.property_card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Property Image */
+.property_image {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+}
+
+.property_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.property_image .badges {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.badge_type {
+    background-color: #0d6efd;
+}
+
+.badge_sale {
+    background-color: #198754;
+}
+
+.badge_purchase {
+    background-color: #e7f1ff;
+    color: #0d6efd;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.share_button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 15;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    padding: 7px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.share_button button {
+    background: transparent;
+    border: none;
+    color: #444;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.share_button button:hover {
+    color: #222;
+}
+
+/* Content Section */
+.property_content {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #eee;
+}
+
+.property_content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.property_content-header .location i {
+    font-size: 16px;
+    color: #6a6cf6;
+    margin-right: 5px;
+}
+
+.property_content-header .location {
+    font-size: 16px;
+    color: #606060;
+}
+
+.property_content-header .location:hover {
+    color: #6a6cf6;
+    cursor: pointer;
+}
+
+.property_content .title {
+    font-size: 25px;
+    font-weight: 600;
+    color: #363636;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
+}
+
+.property_card:hover .property_content .title {
+    color: #6366f1;
+}
+
+.price_section .label {
+    font-size: 14px;
+    color: #555555;
+    margin-bottom: 6px;
+}
+
+.price_section .price {
+    font-size: 22px;
+    color: #363636;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Info Boxes */
+.info_boxes {
+    display: flex;
+    gap: 12px;
+}
+
+.info_box {
+    background: #e7f1ff;
+    padding: 8px;
+    border-radius: 10px;
+    flex: 1;
+    text-align: center;
+    color: #6a6cf6;
+    max-width: 200px;
+}
+
+.info_box i {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.info_box p {
+    margin: 0;
+    font-size: 15px;
+    color: #565656;
+    font-weight: 500;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 767.98px) {
+    .property__menu {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .property_image {
+        height: 220px;
+    }
+
+    .property_content {
+        padding: 16px;
+    }
+
+    .property_content .title {
+        font-size: 22px;
+        max-width: 100%;
+    }
+
+    .price_section .price {
+        font-size: 20px;
+    }
+
+    .info_box i {
+        font-size: 18px;
+    }
+
+    .info_box p {
+        font-size: 14px;
+    }
+
+    .share_button button {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .property_image {
+        height: 200px;
+    }
+
+    .property_content {
+        padding: 14px;
+    }
+
+    .property_content .title {
+        font-size: 20px;
+    }
+
+    .price_section .price {
+        font-size: 18px;
+    }
+
+    .info_box i {
+        font-size: 16px;
+    }
+
+    .info_box p {
+        font-size: 13px;
+    }
+
+    .share_button {
+        padding: 6px 8px;
+    }
+
+    .share_button button {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 399.98px) {
+    .property_image {
+        height: 170px;
+    }
+
+    .property_content {
+        padding: 12px;
+    }
+
+    .property_content .title {
+        font-size: 18px;
+    }
+
+    .price_section .price {
+        font-size: 16px;
+    }
+
+    .info_box {
+        padding: 6px;
+    }
+
+    .info_box i {
+        font-size: 14px;
+    }
+
+    .info_box p {
+        font-size: 12px;
+    }
+
+    .share_button {
+        top: 10px;
+        right: 10px;
+        padding: 5px 7px;
+    }
+
+    .share_button button {
+        font-size: 14px;
+    }
+}

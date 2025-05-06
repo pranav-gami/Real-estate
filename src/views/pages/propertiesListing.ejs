@@ -1,0 +1,94 @@
+<main style="padding-top:70px;" data-page="<%=page %>">
+    <div class="section__container" id="property_box">
+        <div class="container">
+            <div class="section__box">
+                <div class="section__main">
+                    <div class="section__header">
+                        <h2 class="section__header_title">Find Your Explored Properties</h2>
+                        <p class="section__header_description">
+                            Discover a curated collection of premium properties
+                        </p>
+                    </div>
+                    <div class="property-filter-bar">
+                        <div class="search-group">
+                            <div class="search-input-wrapper">
+                                <i class="bi bi-search"></i>
+                                <input type="text" id="filter-search-input"
+                                    placeholder="Search by location, property type..." />
+                            </div>
+                            <button type="submit" class="search_btn" id="filter-search-btn">
+                                <i class="bi bi-search search_icon"></i>Search
+                            </button>
+                        </div>
+                        <div class="filter-group">
+                            <select class="filter-select">
+                                <option value="all">Property-Type</option>
+                                <option value="apartment">Apartment</option>
+                                <option value="villa">Villa</option>
+                                <option value="house">House</option>
+                            </select>
+                            <select class="filter-select">
+                                <option value="all">Status</option>
+                                <option value="sale">For Sale</option>
+                                <option value="rent">For Rent</option>
+                            </select>
+                            <select class="filter-select">
+                                <option value="">Sort By</option>
+                                <option value="price_low_high">Price: Low to High</option>
+                                <option value="price_high_low">Price: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="property__menu">
+                        <!-- RENDER CARDS HERE -->
+                        <!-- <div class="property_card">
+                            <div class="property_image">
+                                <a href="/builstate/property/id">
+                                    <img src="https://ik.imagekit.io/xh3awoalr/Property/202107161117437419-e3fafef2e4a811eba1070242ac110004_oEx1ru6uf.jpg"
+                                        alt="Beachfront Villa in Goa">
+                                    <div class="badges">
+                                        <span class="badge badge_type">Villa</span>
+                                        <span class="badge badge_sale">For Buy</span>
+                                    </div>
+                                    <div class="share_button">
+                                        <button><i class="bi bi-share-fill"></i></button>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="property_content">
+                                <div class="property_content-header">
+                                    <a target="_blank" rel="noopener noreferrer"
+                                        href="https://www.google.co.in/maps/place/Furrisic+Infotech/@23.009359,72.5229264,17z/data=!4m14!1m7!3m6!1s0x395e853d43a0a7f5:0x66067c41833aadbf!2sFurrisic+Infotech!8m2!3d23.009359!4d72.5229264!16s%2Fg%2F11v5d5rbgm!3m5!1s0x395e853d43a0a7f5:0x66067c41833aadbf!8m2!3d23.009359!4d72.5229264!16s%2Fg%2F11v5d5rbgm?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D">
+                                        <p class="location"><i class="bi bi-geo-alt-fill"></i> Vastrapur, Ahmedabad,
+                                            Gujarat</p>
+                                    </a>
+                                </div>
+                                <a href="/buildstate/property/:id">
+                                    <h3 class="title">Skyline Towers: 4BHK Apartment in Ahmedabad</h3>
+                                </a>
+                                <div class="price_section">
+                                    <p class="label">Price</p>
+                                    <p class="price"><i class="bi bi-currency-rupee"></i> 75,00,000</p>
+                                </div>
+                                <div class="info_boxes">
+                                    <div class="info_box">
+                                        <i class="bi bi-house-door"></i>
+                                        <p>4 Beds</p>
+                                    </div>
+                                    <div class="info_box">
+                                        <i class="bi bi-car-front-fill"></i>
+                                        <p>2 Parking</p>
+                                    </div>
+                                    <div class="info_box">
+                                        <i class="bi bi-arrows-fullscreen"></i>
+                                        <p>1200 sqft</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

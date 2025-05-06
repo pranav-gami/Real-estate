@@ -1,15 +1,15 @@
-// import { Router } from "express";
-// import {
-//   loginAdmin,
-//   loginUser,
-//   logoutUser,
-// } from "../../controller/authController";
-// // import { validateLoginCredentials } from ";
+import { Router } from "express";
+import {
+  // loginAdmin,
+  logoutUser,
+  loginUser,
+} from "../../controller/authController";
+import { validateLoginBody } from "../../validations/validator";
 
-// const router = Router();
+const router = Router();
 
 // router.post("/admin/login", loginAdmin);
-// router.post("/user/login", loginUser);
-// router.post("/logout", logoutUser);
+router.post("/login", validateLoginBody, loginUser);
+router.post("/logout", logoutUser);
 
-// export default router;
+export default router;

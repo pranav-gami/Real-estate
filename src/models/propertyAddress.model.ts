@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface IAddress extends Document {
-  city: string; //CITY OR AREA
+  city: string;
   district: string;
   state: string;
   country: string;

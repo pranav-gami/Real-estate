@@ -25,10 +25,9 @@ export const validateParamsID = (
   next();
 };
 
-// USER-SCHEMA
+// LOGIN SCHEMA
 
-const userSchema = Joi.object({
-  name: Joi.string().min(3).max(30).required(),
+const loginSchema = Joi.object({
   email: Joi.string()
     .email({ minDomainSegments: 2, tlds: { allow: ["com", "org", "net"] } })
     .required(),
@@ -38,12 +37,42 @@ const userSchema = Joi.object({
       "string.pattern.base":
         "Password should contain 8-12 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character (@, $, *)",
     }),
+});
+
+export const validateLoginBody = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { error } = loginSchema.validate(req.body);
+  if (error) {
+    res.status(400).json({ success: false, message: error.details[0].message });
+    return;
+  }
+  next();
+};
+
+// USER-SCHEMA
+
+const userSchema = Joi.object({
+  name: Joi.string().min(3).max(30).required(),
+  email: Joi.string()
+    .required()
+    .email({ minDomainSegments: 2, tlds: { allow: ["com", "org", "net"] } })
+    .required(),
+  password: Joi.string()
+    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$*])[A-Za-z\d@$*?&]{8,12}$/)
+    .messages({
+      "string.pattern.base":
+        "Password should contain 8-12 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character (@, $, *)",
+    })
+    .required(),
   role: Joi.string().valid("ADMIN", "USER", "AGENT").default("USER"),
-  city: Joi.string(),
+  city: Joi.string().optional(),
   phone: Joi.string()
     .length(10)
     .pattern(/^[0-9]+$/)
-    .required(),
+    .optional(),
   image: Joi.string().optional(),
   isActive: Joi.boolean().default(false),
 });
@@ -140,12 +169,6 @@ const inquirySchema = Joi.object({
     .messages({
       "string.pattern.base": `"userId" must be a valid MongoDB ObjectId`,
     }),
-  ownerId: Joi.string()
-    .pattern(/^[0-9a-fA-F]{24}$/)
-    .required()
-    .messages({
-      "string.pattern.base": `"userId" must be a valid MongoDB ObjectId`,
-    }),
   message: Joi.string().required(),
   status: Joi.string().valid("PENDING", "RESPONDED").default("PENDING"),
 });
@@ -173,12 +196,6 @@ const bookingSchema = Joi.object({
       "string.pattern.base": `"propertyId" must be a valid MongoDB ObjectId`,
     }),
   userId: Joi.string()
-    .pattern(/^[0-9a-fA-F]{24}$/)
-    .required()
-    .messages({
-      "string.pattern.base": `"userId" must be a valid MongoDB ObjectId`,
-    }),
-  ownerId: Joi.string()
     .pattern(/^[0-9a-fA-F]{24}$/)
     .required()
     .messages({
