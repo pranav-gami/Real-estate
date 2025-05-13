@@ -34,7 +34,6 @@ export const createUser = async (req: Request) => {
     const user = { id: newUser._id, name: newUser.name, email: newUser.email };
     return user;
   } catch (err: any) {
-    console.log(err);
     throw new Error(err.message);
   }
 };

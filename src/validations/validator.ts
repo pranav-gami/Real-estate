@@ -67,7 +67,7 @@ const userSchema = Joi.object({
         "Password should contain 8-12 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character (@, $, *)",
     })
     .required(),
-  role: Joi.string().valid("ADMIN", "USER", "AGENT").default("USER"),
+  role: Joi.string().valid("ADMIN", "USER").default("USER"),
   city: Joi.string().optional(),
   phone: Joi.string()
     .length(10)
@@ -170,7 +170,6 @@ const inquirySchema = Joi.object({
       "string.pattern.base": `"userId" must be a valid MongoDB ObjectId`,
     }),
   message: Joi.string().required(),
-  status: Joi.string().valid("PENDING", "RESPONDED").default("PENDING"),
 });
 // INQUIRY-BODY VALIDATE MIDDLEWARE
 export const validateInquiryBody = (

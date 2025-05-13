@@ -1,0 +1,160 @@
+<main style="padding-top:70px;" data-page="<%=page %>">
+    <div class="property_container">
+        <a href="javascript:void(0);" onclick="window.history.back()" class="back-link">← Back to Properties</a>
+        <div class="property_card">
+            <div class="property_image">
+                <div class="image-slider">
+                    <div class="slides">
+                        <img src="https://ik.imagekit.io/xh3awoalr/Property/202107161117437419-e3fafef2e4a811eba1070242ac110004_oEx1ru6uf.jpg"
+                            class="active" alt="Property 1">
+                        <img src="https://ik.imagekit.io/xh3awoalr/Property/202107161117437419-e3fafef2e4a811eba1070242ac110004_oEx1ru6uf.jpg"
+                            alt="Property 2">
+                        <img src="https://ik.imagekit.io/xh3awoalr/Property/202107161117437419-e3fafef2e4a811eba1070242ac110004_oEx1ru6uf.jpg"
+                            alt="Property 3">
+                    </div>
+                    <div class="slider-controls"></div>
+                </div>
+            </div>
+            <!-- Details Bottom -->
+            <div class="property_content">
+                <div class="content_header">
+                    <div>
+                        <h2 class="property_title">Beachfront Villa in Goa</h2>
+                        <p class="property_location"><i class="bi bi-geo-alt-fill"></i> Candolim Beach, Goa</p>
+                    </div>
+                    <div class="share_button">
+                        <button><i class="bi bi-share-fill"></i></button>
+                    </div>
+                </div>
+                <div class="content_grid">
+                    <!-- Left Column -->
+                    <div class="basic_info">
+                        <div class="price-box">
+                            <h3 class="property_price">₹2,50,000</h3>
+                            <p>Available for buy</p>
+                        </div>
+                        <div class="info_boxes">
+                            <div class="info_box">
+                                <i class="bi bi-house-door"></i>
+                                <p>4 Beds</p>
+                            </div>
+                            <div class="info_box">
+                                <i class="bi bi-car-front-fill"></i>
+                                <p>2 Parking</p>
+                            </div>
+                            <div class="info_box">
+                                <i class="bi bi-arrows-fullscreen"></i>
+                                <p>1200 sqft</p>
+                            </div>
+                        </div>
+                        <div class="btn_section">
+                            <button class="inquiry_btn" data-bs-toggle="modal" data-bs-target="#inquiryModal"><i
+                                    class="bi bi-calendar-minus-fill"></i> Send Inquiry</button>
+                        </div>
+                    </div>
+                    <div class="details_info">
+                        <div class="description_section">
+                            <h4>Description</h4>
+                            <p>A luxurious beachfront villa with direct beach access, a private pool, and a largegarden.
+                            </p>
+                        </div>
+                        <div class="description_section">
+                            <h4>Contact Details</h4>
+                            <div class="contact_details">
+                                <div class="contact_item">
+                                    <span class="label">Seller Name :</span>
+                                    <span class="value sellerName">Pranav Gami</span>
+                                </div>
+                                <div class="contact_item">
+                                    <span class="label">Seller Phone :</span>
+                                    <span class="value sellerContact">+91 9292929292</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info_section">
+            <div class="info_header">
+                <h4 class="location_tag"><i class="bi bi-compass"></i>Location Information</h4>
+            </div>
+            <div class="info_content">
+                <p class="property_address"><i class="bi bi-geo-alt"></i>Ahemdabad, Gujrat</p>
+                <a class="map_link" target="_blank" href="">
+                    <p class="location_tag"><i class="bi bi-globe-asia-australia"></i>Click to View on Map →</p>
+                </a>
+            </div>
+        </div>
+        <div class="section__container" id="property_box">
+            <div class="container">
+                <div class="section__box">
+                    <div class="section__main">
+                        <div class="section__header">
+                            <h2 class="section__header_title">Our Purpose</h2>
+                            <p class="section__header_description">
+                                Your trusted partner in finding the perfect home. We make property hunting simple,
+                                efficient, and tailored to your unique needs.
+                            </p>
+                        </div>
+                        <div class="cards_menu grid_2">
+                            <div class="card">
+                                <div class="card_content" style="text-align: center;">
+                                    <div class="card__icon"><i class="bi bi-bullseye"></i></div>
+                                    <h3 class="card_title">Our Mission</h3>
+                                    <p class="card_subtitle">To provide a transparent and efficient property rental
+                                        experience for all users. We strive to make the process of finding your perfect
+                                        home
+                                        as seamless as possible, while maintaining the highest standards of service and
+                                        integrity.</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card_content" style="text-align: center;">
+                                    <div class="card__icon"><i class="bi bi-eye"></i></div>
+                                    <h3 class="card_title">Our Vision</h3>
+                                    <p class="card_subtitle">Empowering millions of users to find their perfect home
+                                        with
+                                        ease and trust. We envision a future where property search is not just about
+                                        finding
+                                        a place to live, but about discovering a community to belong to..</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- INQUIRY MODAL -->
+        <div class="modal fade" id="inquiryModal" tabindex="-1" aria-labelledby="inquiryModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content inquiry-modal">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="inquiryModalLabel">Send an Inquiry</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="inquiryForm">
+                            <div class="mb-3">
+                                <label for="userQuery" class="form-label">Your Inquiry <span
+                                        class="text-danger">*</span></label>
+                                <textarea class="form-control" id="userQuery" rows="3"
+                                    placeholder="Type your inquiry here..." required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contactNumber" class="form-label">Contact Number <span
+                                        class="text-danger">*</span></label>
+                                <input type="tel" class="form-control" id="contactNumber" placeholder="9876543210">
+                                <div class="m-1 mt-2 text-start ">
+                                    <div class="form-text text-danger" id="loginError"></div>
+                                </div>
+                                <div class="form-text">Our agent will use this number to reach you.</div>
+                            </div>
+                            <button type="submit" class="w-100" style="background-color: #6a6cf6;color: white;">Submit
+                                Inquiry</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>

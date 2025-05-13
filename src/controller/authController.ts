@@ -4,38 +4,37 @@ import { Request, Response } from "express";
 import User from "../models/user.model";
 
 //AUTHENTICATING USER AND TOKEN
-// LOGIN ADMIN
 
-// export const loginAdmin = async (req: Request, res: Response) => {
-//   try {
-//     const { email, password } = req.body;
-//     const user = await User.findOne({ email });
-//     if (!user) {
-//       throw new Error("User not Found");
-//     }
-//     const isPassMatch = await bcrypt.compare(password, user.password);
-//     if (!isPassMatch) {
-//       throw new Error("Password don't Match!");
-//     }
-//     const token = jsonwebtoken.sign(
-//       {
-//         userId: user.id,
-//         role: user.role,
-//       },
-//       process.env.JWT_SECRET as string,
-//       { expiresIn: "1d" }
-//     );
+export const loginAdmin = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      throw new Error("Invalid Admin Credentials !");
+    }
+    const isPassMatch = await bcrypt.compare(password, user.password);
+    if (!isPassMatch) {
+      throw new Error("Invalid Password !");
+    }
+    const token = jsonwebtoken.sign(
+      {
+        userId: user.id,
+        role: user.role,
+      },
+      process.env.JWT_SECRET as string,
+      { expiresIn: "1d" }
+    );
 
-//     res.cookie("token", token, {
-//       httpOnly: true,
-//       secure: process.env.NODE_ENV === "helloAdmin",
-//       maxAge: 24 * 60 * 60 * 1000,
-//     });
-//     res.status(200).json({ success: true, user, token });
-//   } catch (error: any) {
-//     res.status(400).json({ success: false, message: error.message });
-//   }
-// };
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "helloAdmin",
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+    res.status(200).json({ success: true, user });
+  } catch (error: any) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
 
 // LOGIN USER
 
@@ -44,11 +43,13 @@ export const loginUser = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      throw new Error("User not Found!");
+      throw new Error(
+        "Email address and password you specified are not correct"
+      );
     }
     const isPassMatch = await bcrypt.compare(password, user.password);
     if (!isPassMatch) {
-      throw new Error("Password don't Match!");
+      throw new Error("Invalid Password !!");
     }
     const token = jsonwebtoken.sign(
       {
@@ -65,7 +66,7 @@ export const loginUser = async (req: Request, res: Response) => {
       secure: process.env.NODE_ENV === "helloAdmin",
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.status(200).json({ success: true, user, token });
+    res.status(200).json({ success: true, user });
   } catch (error: any) {
     res.status(400).json({ success: false, message: error.message });
   }

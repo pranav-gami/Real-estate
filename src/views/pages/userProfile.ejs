@@ -1,0 +1,96 @@
+<main style="padding-top:90px;" data-page="<%=page %>">
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar_header">
+                <h2>Account</h2>
+                <p class="user-name">Pranav Gami</p>
+            </div>
+            <nav class="sidebar_nav">
+                <a href="" data-section="overview" class="active">User Profile</a>
+                <a href="" data-section="orders">Inquiries</a>
+                <a href="" data-section="profile">Edit Profile</a>
+                <button class="logout-btn">Logout</button>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <button class="menu_toggle">&#9776;</button>
+                <h1 class="page_title">User Profile</h1>
+            </header>
+            <section id="overview" class="section active">
+                <div class="user-overview-card">
+                    <div class="user-section">
+                        <h3 class="section-title">User Details</h3>
+                        <div class="detail-item">
+                            <span class="label">Name:</span>
+                            <span class="value user-name">Pranav Gami</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Email:</span>
+                            <span class="value user-email">pranav123@gmail.com</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Phone:</span>
+                            <span class="value user-phone">9175433210</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Role:</span>
+                            <span class="value user-role">USER</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Active Status:</span>
+                            <span class="value user-status active">Active</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 25px;">
+                    <button class="profile_Edit_Btn">Edit Profile</button>
+                </div>
+            </section>
+            <!-- Orders Section -->
+            <section id="inquiry" class="section">
+                <div class="inquiry-list">
+                    <div class="inquiry-card">
+                        <div class="inquiry-info">
+                            <h4 class="property_name">Red Tape Men Rubber Sliders</h4>
+                            <p class="inquiry_msg">Size: 9</p>
+                            <p class="property_owner">Delivered on Sun, 1 Oct 2023</p>
+                        </div>
+                    </div>
+                    <div class="inquiry-card">
+                        <div class="inquiry-info">
+                            <h4 class="property_name">Red Tape Men Rubber Sliders</h4>
+                            <p class="inquiry_msg">Size: 9</p>
+                            <p class="property_owner">Delivered on Sun, 1 Oct 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Edit Profile Section -->
+            <section id="profile" class="section">
+                <form class="profile-form" id="profile-form">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" value="Pranav Gami">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="pranav123@gmail.com">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" value="9175433210">
+                    <label for="role">Role</label>
+                    <input type="text" id="role" value="USER" disabled>
+                    <label for="area">Area/Locality</label>
+                    <input type="text" id="area" value="Bharati Ashram">
+                    <label for="city">City</label>
+                    <input type="text" id="city" value="Sarkhej">
+                    <label for="district">District</label>
+                    <input type="text" id="district" value="Ahemdabad">
+                    <label for="pin">PIN</label>
+                    <input type="text" id="pin" value="382211">
+                    <div class="btn_group">
+                        <button type="submit" class="save_button">Save</button>
+                        <button type="submit" class="cancel_button">Cancel</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+</main>

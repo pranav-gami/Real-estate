@@ -1,6 +1,6 @@
 <nav class="header navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="header__brand navbar-brand fw-bold" href="#">
+        <a class="header__brand navbar-brand fw-bold" href="/buildestate">
             <img class="logo__img" src="/assets/media/logos/homeIcon.png" alt="">
             <span class="header__brand-text">BuildEstate</span>
         </a>
@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li class="header__item nav-item">
-                    <a class="header__link nav-link" href="/buildestate/aboutus">
+                    <a class="header__link nav-link" href="/buildestate/about">
                         <i class="bi bi-people mx-1"></i> About Us
                     </a>
                 </li>
@@ -32,9 +32,44 @@
                     </a>
                 </li>
             </ul>
-            <div class="header__actions d-flex align-items-center gap-2">
-                <a href="" class="header__btn">Sign in</a>
-                <a href="" class="header__btn">Get started</a>
+            <!-- USER PROFILE SECTION -->
+            <div class="header__actions d-flex align-items-center position-relative" id="profileContainer">
+                <div class="d-flex align-items-center" style="cursor: pointer;">
+                    <a href="/buildestate/myprofile" style="text-decoration: none;">
+                        <span class="username fw-semibold me-2">Dejan Lovren</span>
+                        <!-- <i class="bi bi-caret-down-fill me-2" style="color: #565656;"></i> -->
+                        <img src="/assets/media/users/1745906196925-300-21.jpg" alt="Profile"
+                            class="profile-avatar avatar" id="profileAvatar">
+                    </a>
+                </div>
+                <div class="user-dropdown shadow" id="userDropdown">
+                    <div class="dropdown-header d-flex align-items-center p-3 border-bottom">
+                        <img src="/assets/media/users/1745906196925-300-21.jpg" alt="Profile"
+                            class="dropdown-avatar avatar me-3">
+                        <div>
+                            <a href="/buildestate/myprofile">
+                                <div class="fw-semibold username">Dejan Lovren</div>
+                            </a>
+                            <div class="text-muted small useremail">dejan@example.com</div>
+                        </div>
+                    </div>
+                    <div class="dropdown-body py-2">
+                        <a href="/buildestate/myprofile" class="dropdown-item px-3 py-1"><i
+                                class="bi bi-person-circle"></i>My
+                            Profile</a>
+                        <a href="" class="dropdown-item px-3 py-1"><i class="bi bi-sliders"></i>Settings</a>
+                    </div>
+                    <div class="dropdown-footer border-top py-2">
+                        <a href="" class="dropdown-item text-danger px-3 py-2 logoutBtn"><i
+                                class="bi bi-box-arrow-right"></i>Sign Out</a>
+                    </div>
+                </div>
+            </div>
+            <div class="header__actions d-flex align-items-center gap-2" id="loginContainer">
+                <a href="/signin" class="login-btn d-flex align-items-center">
+                    <i class="bi bi-person-fill me-2"></i>
+                    <span>Login</span>
+                </a>
             </div>
         </div>
     </div>

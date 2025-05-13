@@ -11,20 +11,28 @@ import {
   validatePropertyBody,
 } from "../../validations/validator";
 import { upload } from "../../middleware/uploadMulter";
+import { verifyToken } from "../../middleware/authMiddleware";
 
 const router = Router();
 
 // PROPERTIES API'S ENDPOINTS
-router.post("/add", validatePropertyBody, upload.array("images"), addProperty);
+router.post(
+  "/add",
+  verifyToken,
+  validatePropertyBody,
+  upload.array("images"),
+  addProperty
+);
 router.get("/get", getProperties);
-router.get("/get/:id", validateParamsID, getPropertyDataById);
+router.get("/get/:id", validateParamsID, verifyToken, getPropertyDataById);
 router.put(
   "/update/:id",
   validateParamsID,
+  verifyToken,
   validatePropertyBody,
   upload.array("images"),
   updatePropertyById
 );
-router.delete("/delete/:id", validateParamsID, deletePropery);
+router.delete("/delete/:id", validateParamsID, verifyToken, deletePropery);
 
 export default router;

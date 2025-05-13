@@ -9,20 +9,16 @@ export const verifyToken = (
   const cookieToken = req.cookies?.token;
   const token = cookieToken;
   if (!token) {
-    return res.redirect("/admin/login?error=login_required");
+    return res.redirect("/signin?error=login_required");
   }
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
     if (!decoded) {
-      return res
-        .status(401)
-        .json({ error: "User not found or token is invalid" });
+      res.status(401).json({ error: "User not found or token is invalid" });
     }
     (req as any).user = decoded;
     next();
-  } catch (err) {
-    return res
-      .status(401)
-      .json({ success: false, message: "Unauthorized access !" });
+  } catch (error: any) {
+    res.status(401).json({ success: false, message: "Unauthorized access !" });
   }
 };

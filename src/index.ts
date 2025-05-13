@@ -21,7 +21,7 @@ app.set("views", path.join(__dirname, "views"));
 // LAYOUT SETUP FOR EJS TEMPLATES
 
 app.use(expressEjsLayouts);
-app.set("layout", "layouts/main");
+app.set("layout", "layouts/userLayout");
 
 // MIDDELEWARE TO PARSE DATA (BODY & FORM DATA)
 app.use(express.json());

@@ -13,7 +13,7 @@ export const createInquiry = async (req: Request) => {
     const data = await Property.findById(propertyId);
 
     if (userId == data?.ownerId) {
-      throw new Error("Buyer and Seller Can't be Same");
+      throw new Error("You Can't send Inquiry to YOur Own Property!");
     }
     const userExists = await User.findById(userId);
     if (!userExists) {
@@ -105,33 +105,6 @@ export const updateInquiryData = async (req: Request) => {
       throw new Error(err.message);
     } else {
       throw new Error("Unknown error occured in Updating Inquiry...");
-    }
-  }
-};
-
-//UPDATE STATUS SERVICES
-
-export const updateStatus = async (req: Request) => {
-  try {
-    const inquiryId = req.params.id;
-    const isExists = await Inquiry.findById(inquiryId);
-    if (!isExists) {
-      throw new Error("Inquiry you are trying to update is not found !");
-    }
-    const { status } = req.body;
-    const response = await Inquiry.findByIdAndUpdate(
-      inquiryId,
-      {
-        $set: { status },
-      },
-      { new: true }
-    );
-    return response;
-  } catch (err) {
-    if (err instanceof Error) {
-      throw new Error(err.message);
-    } else {
-      throw new Error("Unknown error occured in updating Inquiry..");
     }
   }
 };

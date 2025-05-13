@@ -1,9 +1,50 @@
 import { Router } from "express";
+import { verifyToken } from "../middleware/authMiddleware";
 
 const router = Router();
 
 // ROUTES FOR DIFFRENT PAGES
 
+// ADMIN PAGES
+
+router.get("/admin/signin", (_req, res) => {
+  res.render("pages/admin/signin", { layout: false });
+});
+
+router.get("/admin/dashboard", (_req, res) => {
+  res.render("pages/admin/dashboard", {
+    layout: "layouts/adminLayout",
+    styles: `<link href="/assets/styles/admin/datatables.bundle.css" rel="stylesheet" type="text/css" />`,
+    scripts: ``,
+    vendor: `
+        <script src="/assets/js/admin/datatables.bundle.js"></script>`,
+  });
+});
+
+router.get("/admin/users", (_req, res) => {
+  res.render("pages/admin/userListing", {
+    layout: "layouts/adminLayout",
+    styles: `<link href="/assets/styles/admin/datatables.bundle.css" rel="stylesheet" type="text/css" />`,
+    scripts: `
+        <script src="/assets/js/admin/userlisting.js"></script>`,
+    vendor: `
+        <script src="/assets/js/admin/datatables.bundle.js"></script>`,
+  });
+});
+
+router.get("/admin/users/:id", (req, res) => {
+  res.render("pages/admin/userView", {
+    layout: "layouts/adminLayout",
+    userId: req.params.id,
+    styles: `<link href="/assets/styles/admin/datatables.bundle.css" rel="stylesheet" type="text/css" />`,
+    scripts: `
+        <script src="/assets/js/admin/userView.js"></script>`,
+    vendor: `
+        <script src="/assets/js/admin/datatables.bundle.js"></script>`,
+  });
+});
+
+// USER ROUTES
 router.get("/signup", (_req, res) => {
   res.render("pages/signupUser", { layout: false });
 });
@@ -28,14 +69,69 @@ router.get("/buildestate", (_req, res) => {
   });
 });
 
-router.get("/buildestate/properties", (_req, res) => {
+router.get("/buildestate/properties", verifyToken, (_req, res) => {
   res.render("pages/propertiesListing", {
     page: "properties",
     styles: `
-    <link href="/assets/styles/pages/properties.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/styles/pages/propertiesListing.css" rel="stylesheet" type="text/css"/>
     `,
     scripts: `
-    <script type="module" src="/assets/js/pages/properties.js" defer></script>`,
+    <script type="module" src="/assets/js/pages/propertiesListing.js" defer></script>`,
+  });
+});
+
+router.get("/buildestate/property/:id", verifyToken, (_req, res) => {
+  res.render("pages/property", {
+    page: "properties",
+    styles: `
+    <link href="/assets/styles/pages/property.css" rel="stylesheet" type="text/css"/>
+    `,
+    scripts: `
+    <script type="module" src="/assets/js/pages/property.js" defer></script>`,
+  });
+});
+
+router.get("/buildestate/properties/search", verifyToken, (_req, res) => {
+  res.render("pages/searchProperties", {
+    page: "searchproperties",
+    styles: `
+    <link href="/assets/styles/pages/propertiesListing.css" rel="stylesheet" type="text/css"/>
+    `,
+    scripts: `
+    <script type="module" src="/assets/js/pages/searchProperties.js" defer></script>`,
+  });
+});
+
+router.get("/buildestate/myprofile", verifyToken, (_req, res) => {
+  res.render("pages/userProfile", {
+    page: "userprofile",
+    styles: `
+    <link href="/assets/styles/pages/userProfile.css" rel="stylesheet" type="text/css"/>
+    `,
+    scripts: `
+    `,
+  });
+});
+
+router.get("/buildestate/about", verifyToken, (_req, res) => {
+  res.render("pages/about", {
+    page: "about",
+    styles: `
+    <link href="/assets/styles/pages/about.css" rel="stylesheet" type="text/css"/>
+    `,
+    scripts: `
+    `,
+  });
+});
+
+router.get("/buildestate/contact", verifyToken, (_req, res) => {
+  res.render("pages/contact", {
+    page: "about",
+    styles: `
+    <link href="/assets/styles/pages/contact.css" rel="stylesheet" type="text/css"/>
+    `,
+    scripts: `
+    `,
   });
 });
 

@@ -1,0 +1,371 @@
+.property_container {
+    max-width: 1300px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.back-link {
+    font-size: 20px;
+    display: inline-block;
+    margin-bottom: 18px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* PROPERTY_CARD */
+.property_card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* SLIDER SECTION */
+.image-slider {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.slides img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: none;
+    border-radius: 10px;
+}
+
+.slides img.active {
+    display: block;
+}
+
+.slider-controls {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(59, 59, 59, 0.8);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: rgba(221, 221, 221, 0.8);
+}
+
+/* PROPETY CONTENT*/
+
+.property_content {
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.content_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.property_title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+}
+
+.property_title:hover {
+    color: #6a6cf6;
+}
+
+.property_location {
+    font-size: 15px;
+    color: #333;
+}
+
+.property_location:hover {
+    color: #6a6cf6;
+}
+
+.share_button {
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.share_button:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.share_button button {
+    background: transparent;
+    border: none;
+    color: #444;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.share_button button:hover {
+    color: #222;
+}
+
+.content_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.price-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #d7e8ff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.price-box .property_price {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #1a73e8;
+}
+
+.price-box p {
+    color: #444;
+}
+
+
+.info_boxes {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.info_box {
+    background: #d7e8ff;
+    padding: 8px;
+    border-radius: 10px;
+    flex: 1;
+    text-align: center;
+    color: #6a6cf6;
+    max-width: 200px;
+}
+
+.info_box i {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.info_box p {
+    margin: 0;
+    font-size: 15px;
+    color: #565656;
+    font-weight: 500;
+}
+
+.btn_section {
+    margin-left: 10px;
+    margin-top: 40px;
+    font-weight: bold;
+}
+
+.btn_section i {
+    padding-right: 10px;
+}
+
+.inquiry_btn {
+    width: 100%;
+    background-color: #686bef;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.inquiry_btn:hover {
+    background-color: #5557e9;
+}
+
+/* Right Side - Details Info */
+.details_info {
+    padding: 0 15px;
+}
+
+.description_section {
+    margin-bottom: 30px;
+}
+
+.description_section h4 {
+    color: #222;
+    font-size: 22px;
+    padding-bottom: 6px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ddd;
+}
+
+.description_section p {
+    font-size: 18px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.contact_details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact_item {
+    background: linear-gradient(to right bottom, #e4efff, #d7e8ff);
+    padding: 12px 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 0 1px #e0e0e0;
+    transition: all 0.2s ease;
+}
+
+.contact_item:hover {
+    box-shadow: inset 0 0 0 2px #c7d2fe;
+}
+
+.contact_item .label {
+    font-weight: 600;
+    color: #333;
+    font-size: 17px;
+    padding-right: 7px;
+}
+
+.contact_item .value {
+    color: #1a73e8;
+    font-size: 17px;
+    word-break: break-word;
+}
+
+@media (max-width: 576px) {
+    .contact_item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}
+
+@media (max-width: 992px) {
+    .content_grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.info_section {
+    margin-top: 30px;
+    background: #d7e8ff;
+    padding: 18px 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 1px 2px #d6e4f7;
+}
+
+.info_header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+.info_header i {
+    font-size: 25px;
+    color: #6a6cf6;
+    padding-right: 7px;
+}
+
+.info_header h4 {
+    margin: 0;
+    color: #6a6cf6;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.info_content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+.info_content i {
+    font-size: 20px;
+    color: #6a6cf6;
+    padding-right: 7px;
+}
+
+.info_content p {
+    margin: 0;
+    color: #6a6cf6;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.info_content p:hover {
+    color: #5b5efd;
+}
+
+/*  INQUIRY MODAL */
+
+.inquiry-modal {
+    padding: 20px 15px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.inquiry-modal .modal-header {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.inquiry-modal .modal-title {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.inquiry-modal .modal-body label {
+    font-weight: 500;
+}
+
+.inquiry-modal textarea,
+.inquiry-modal input {
+    border-radius: 8px;
+}
+
+.inquiry-modal button[type="submit"] {
+    padding: 10px;
+    border-radius: 8px;
+}
+
+@media (max-width: 576px) {
+    .modal-dialog {
+        margin: 1rem;
+    }
+
+    .inquiry-modal .modal-title {
+        font-size: 1.25rem;
+    }
+}

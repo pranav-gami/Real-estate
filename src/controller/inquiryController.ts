@@ -4,7 +4,7 @@ import {
   getInquiryData,
   updateInquiryData,
   deleteInquiryById,
-  updateStatus,
+  // updateStatus,
 } from "../services/inquiryService";
 
 // ADD-INQUIRY CONTROLLER
@@ -75,22 +75,22 @@ export const updateInquiryById = async (req: Request, res: Response) => {
 
 //UPDATE STATUS-CONTROLLER
 
-export const updateInquiryStatus = async (req: Request, res: Response) => {
-  try {
-    const inquiry = await updateStatus(req);
-    res.status(200).json({
-      success: true,
-      data: inquiry,
-      message: "Status Updated Successfully",
-    });
-  } catch (error) {
-    if (error instanceof Error) {
-      res.status(400).json({ success: false, message: error.message });
-    } else {
-      res.status(400).json({ success: false, message: "Some Error Occured!!" });
-    }
-  }
-};
+// export const updateInquiryStatus = async (req: Request, res: Response) => {
+//   try {
+//     const inquiry = await updateStatus(req);
+//     res.status(200).json({
+//       success: true,
+//       data: inquiry,
+//       message: "Status Updated Successfully",
+//     });
+//   } catch (error) {
+//     if (error instanceof Error) {
+//       res.status(400).json({ success: false, message: error.message });
+//     } else {
+//       res.status(400).json({ success: false, message: "Some Error Occured!!" });
+//     }
+//   }
+// };
 
 // DELETE-INQUIRY CONTROLLER
 

@@ -17,12 +17,8 @@ export const addUser = async (req: Request, res: Response) => {
       data: user,
       message: "Register Successfully",
     });
-  } catch (error) {
-    if (error instanceof Error) {
-      res.status(400).json({ success: false, message: error.message });
-    } else {
-      res.status(400).json({ error: "Some Error Occured!!" });
-    }
+  } catch (error: any) {
+    res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -32,12 +28,8 @@ export const getAllUserData = async (req: Request, res: Response) => {
   try {
     const userData = await getUserData(req, true);
     res.status(200).json({ success: true, data: userData });
-  } catch (error) {
-    if (error instanceof Error) {
-      res.status(400).json({ success: false, message: error.message });
-    } else {
-      res.status(400).json({ success: false, message: "Some Error Occured!!" });
-    }
+  } catch (error:any) {
+    res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -47,12 +39,8 @@ export const getUserDataById = async (req: Request, res: Response) => {
   try {
     const userData = await getUserData(req, false);
     res.status(200).json({ success: true, data: userData });
-  } catch (error) {
-    if (error instanceof Error) {
-      res.status(400).json({ success: false, message: error.message });
-    } else {
-      res.status(400).json({ success: false, message: "Some Error Occured!!" });
-    }
+  } catch (error: any) {
+    res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -62,12 +50,8 @@ export const updateUserById = async (req: Request, res: Response) => {
   try {
     const user = await updateUserData(req);
     res.status(200).json({ success: true, data: user });
-  } catch (error) {
-    if (error instanceof Error) {
-      res.status(400).json({ success: false, message: error.message });
-    } else {
-      res.status(400).json({ success: false, message: "Some Error Occured!!" });
-    }
+  } catch (error: any) {
+    res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -75,12 +59,8 @@ export const updateStatus = async (req: Request, res: Response) => {
   try {
     const user = await updateUserStatus(req);
     res.status(200).json({ success: true, data: user });
-  } catch (error) {
-    if (error instanceof Error) {
-      res.status(400).json({ success: false, message: error.message });
-    } else {
-      res.status(400).json({ success: false, message: "Some Error Occured!!" });
-    }
+  } catch (error: any) {
+    res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -92,11 +72,7 @@ export const deleteUserById = async (req: Request, res: Response) => {
     res
       .status(200)
       .json({ success: true, message: "User deleted successfully." });
-  } catch (error) {
-    if (error instanceof Error) {
-      res.status(400).json({ success: false, message: error.message });
-    } else {
-      res.status(400).json({ success: false, message: "Some Error Occured!!" });
-    }
+  } catch (error: any) {
+    res.status(400).json({ success: false, message: error.message });
   }
 };

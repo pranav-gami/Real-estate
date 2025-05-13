@@ -10,18 +10,20 @@ import {
   updateAddressById,
   deleteAdressdById,
 } from "../../controller/addressController";
+import { verifyToken } from "../../middleware/authMiddleware";
 
 const router = Router();
 
-router.post("/add", validateAddressBody, addAddress);
-router.get("/get", getAllAddressData);
-router.get("/get/:id", validateParamsID, getAddressDataById);
+router.post("/add", verifyToken, validateAddressBody, addAddress);
+router.get("/get", verifyToken, getAllAddressData);
+router.get("/get/:id", validateParamsID, verifyToken, getAddressDataById);
 router.put(
   "/update/:id",
   validateParamsID,
+  verifyToken,
   validateAddressBody,
   updateAddressById
 );
-router.delete("/delete/:id", validateParamsID, deleteAdressdById);
+router.delete("/delete/:id", validateParamsID, verifyToken, deleteAdressdById);
 
 export default router;

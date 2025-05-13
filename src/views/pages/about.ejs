@@ -1,275 +1,159 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>About Us - BuildEstate</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        /* Reset & Base styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        h1,
-        h2,
-        h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .mb-4 {
-            margin-bottom: 1rem;
-        }
-
-        .mb-6 {
-            margin-bottom: 1.5rem;
-        }
-
-        .mb-8 {
-            margin-bottom: 2rem;
-        }
-
-        /* Hero section */
-        .hero {
-            height: 80vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, #2563eb, #4f46e5, #7c3aed);
-            animation: bgShift 20s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes bgShift {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            padding: 0 1rem;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-        }
-
-        .decor-line {
-            width: 6rem;
-            height: 4px;
-            background: white;
-            margin: 2rem auto 0;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 0;
-        }
-
-        section.bg-light {
-            background: #f9fafb;
-        }
-
-        .grid-3,
-        .grid-2 {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        }
-
-        .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
-
-        .card {
-            background: white;
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
-            border: 1px solid #e5e7eb;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        }
-
-        .icon-circle {
-            width: 4rem;
-            height: 4rem;
-            background: #dbeafe;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #2563eb;
-        }
-
-        /* Colors */
-        .blue-line {
-            background-color: #2563eb;
-        }
-
-        /* Responsive typography */
-        @media (min-width: 768px) {
-            .hero h1 {
-                font-size: 4rem;
-            }
-
-            .hero p {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
+<main style="padding-top:70px;" data-page="<%=page%>">
+    <div class="about_section">
+        <div class="animated-balls">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="about_content">
             <h1>Building Your Future,<br>One Home at a Time</h1>
-            <p>We're more than just a property platform - we're your partner in finding the perfect place to call home.
+            <p>We're more than just a property platform – we're your partner in finding the perfect place to call home.
             </p>
-            <div class="decor-line"></div>
         </div>
-    </section>
-
-    <!-- Mission & Vision -->
-    <section class="bg-light">
-        <div class="container text-center mb-8">
-            <h2 class="text-4xl font-bold mb-4">Our Purpose</h2>
-            <div class="decor-line blue-line"></div>
-        </div>
-        <div class="container grid-2">
-            <div class="card">
-                <div class="flex items-center mb-4">
-                    <div class="icon-circle"><span>🎯</span></div>
+    </div>
+    <div class="section__container" id="property_box">
+        <div class="container">
+            <div class="section__box">
+                <div class="section__main">
+                    <div class="section__header">
+                        <p class="section__header_subtitle">OUR STRENGTH</p>
+                        <h2 class="section__header_title">Why Choose Us</h2>
+                        <p class="section__header_description">
+                            We're committed to providing exceptional service and finding the perfect home for you with
+                            our
+                            innovative approach
+                        </p>
+                    </div>
+                    <div class="cards_menu grid_4">
+                        <div class="card">
+                            <div class="card_content">
+                                <div class="card__icon"><i class="bi bi-chat-left-dots-fill"></i></div>
+                                <h3 class="card_title">Direct Communication</h3>
+                                <p class="card_subtitle">Get instant responses from our experienced agents through our
+                                    real-time chat system.</p>
+                                <a href="">Learn More →</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card_content">
+                                <div class="card__icon"><i class="bi bi-shield-check"></i></div>
+                                <h3 class="card_title">Verified Properties</h3>
+                                <p class="card_subtitle">Every property is thoroughly inspected and verified to ensure
+                                    quality and authenticity.</p>
+                                <a href="">Learn More →</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card_content">
+                                <div class="card__icon"><i class="bi bi-house-check-fill"></i></div>
+                                <h3 class="card_title">Quality Fiest</h3>
+                                <p class="card_subtitle">We maintain high standards for all properties, ensuring you get
+                                    the
+                                    best value.</p>
+                                <a href="">Learn More →</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card_content">
+                                <div class="card__icon"><i class="bi bi-people-fill"></i></div>
+                                <h3 class="card_title">Family focused</h3>
+                                <p class="card_subtitle">Find homes that perfectly match your family needs and lifestyle
+                                    preferences.</p>
+                                <a href="">Learn More →</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h3>Our Mission</h3>
-                <p>To provide a transparent and efficient property rental experience for all users. We strive to make
-                    the process of finding your perfect home as seamless as possible, while maintaining the highest
-                    standards of service and integrity.</p>
             </div>
-            <div class="card">
-                <div class="flex items-center mb-4">
-                    <div class="icon-circle"><span>👁️</span></div>
+        </div>
+    </div>
+    <div class="section__container" id="property_box">
+        <div class="container">
+            <div class="section__box">
+                <div class="section__main">
+                    <div class="section__header">
+                        <h2 class="section__header_title">Our Purpose</h2>
+                        <p class="section__header_description">
+                            Your trusted partner in finding the perfect home. We make property hunting simple,
+                            efficient, and tailored to your unique needs.
+                        </p>
+                    </div>
+                    <div class="cards_menu grid_2">
+                        <div class="card">
+                            <div class="card_content" style="text-align: center;">
+                                <div class="card__icon"><i class="bi bi-bullseye"></i></div>
+                                <h3 class="card_title">Our Mission</h3>
+                                <p class="card_subtitle">To provide a transparent and efficient property rental
+                                    experience for all users. We strive to make the process of finding your perfect
+                                    home
+                                    as seamless as possible, while maintaining the highest standards of service and
+                                    integrity.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card_content" style="text-align: center;">
+                                <div class="card__icon"><i class="bi bi-eye"></i></div>
+                                <h3 class="card_title">Our Vision</h3>
+                                <p class="card_subtitle">Empowering millions of users to find their perfect home
+                                    with
+                                    ease and trust. We envision a future where property search is not just about
+                                    finding
+                                    a place to live, but about discovering a community to belong to..</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h3>Our Vision</h3>
-                <p>Empowering millions of users to find their perfect home with ease and trust. We envision a future
-                    where property search is not just about finding a place to live, but about discovering a community
-                    to belong to.</p>
             </div>
         </div>
-    </section>
-
-    <!-- Values -->
-    <section>
-        <div class="container text-center mb-8">
-            <h2 class="text-4xl font-bold mb-4">Our Values</h2>
-            <div class="decor-line blue-line"></div>
-            <p>These core values guide everything we do at BuildEstate</p>
+    </div>
+    <div class="section__container" id="property_box">
+        <div class="container">
+            <div class="section__box">
+                <div class="section__main">
+                    <div class="section__header">
+                        <h2 class="section__header_title">Terms & Conditions</h2>
+                        <p class="section__header_description">By accessing , you agree to abide by
+                            our terms.Please review them
+                            carefully to understand your rights and responsibilities when using our services.
+                        </p>
+                    </div>
+                    <div class="cards_menu grid_4">
+                        <div class="card">
+                            <div class="card_content" style="text-align: center;">
+                                <div class="card__icon"><i class="bi bi-coin"></i></div>
+                                <h3 class="card_title"> Fees and Promotions</h3>
+                                <p class="card_subtitle">Admin may charge a fee for listing properties or promoting them
+                                    on the platform and payments made are non-refundable unless otherwise stated</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card_content" style="text-align: center;">
+                                <div class="card__icon"><i class="bi bi-person-fill-slash"></i></div>
+                                <h3 class="card_title"> Dispute Resolution</h3>
+                                <p class="card_subtitle">Any disputes between user and Owner must be resolved privately
+                                    or via
+                                    legal means; we do not mediate disputes.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card_content" style="text-align: center;">
+                                <div class="card__icon"><i class="bi bi-file-ruled-fill"></i></div>
+                                <h3 class="card_title">Governing Law</h3>
+                                <p class="card_subtitle">These terms are governed by the laws of [Your Country/State].
+                                    Disputes shall be subject to its jurisdiction.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card_content" style="text-align: center;">
+                                <div class="card__icon"><i class="bi bi-house-exclamation"></i></div>
+                                <h3 class="card_title"> Property Ownership</h3>
+                                <p class="card_subtitle">The submitter must be the legal owner of the property or a
+                                    legally authorized representative (such as a licensed agent or broker)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="container grid-3">
-            <div class="card">
-                <div class="icon-circle"><span>🛡️</span></div>
-                <h3>Trust</h3>
-                <p>We verify all property owners and renters to ensure a safe and reliable experience for everyone.</p>
-            </div>
-            <div class="card">
-                <div class="icon-circle"><span>✅</span></div>
-                <h3>Transparency</h3>
-                <p>Clear and honest property listings with accurate information and no hidden fees.</p>
-            </div>
-            <div class="card">
-                <div class="icon-circle"><span>⏰</span></div>
-                <h3>Efficiency</h3>
-                <p>Streamlined property search and listing process to save you time and effort.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Milestones -->
-    <section class="bg-light">
-        <div class="container text-center mb-8">
-            <h2 class="text-4xl font-bold mb-4">Our Journey So Far</h2>
-            <div class="decor-line blue-line"></div>
-            <p>Milestones that mark our growth and success</p>
-        </div>
-        <div class="container grid-2">
-            <div class="card">
-                <div class="icon-circle"><span>🏠</span></div>
-                <h3>5000+</h3>
-                <p class="font-semibold">Properties Listed</p>
-                <p>And growing daily</p>
-            </div>
-            <div class="card">
-                <div class="icon-circle"><span>🎯</span></div>
-                <h3>10000+</h3>
-                <p class="font-semibold">Happy Clients</p>
-                <p>Satisfied customers</p>
-            </div>
-        </div>
-    </section>
-
-</body>
-
-</html>
+    </div>
+</main>

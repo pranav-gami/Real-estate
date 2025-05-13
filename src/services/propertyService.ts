@@ -93,7 +93,7 @@ export const getPropertyData = async (req: Request, all: Boolean) => {
     }
     const propertyId = req.params.id;
     const propertyData = await Property.findById(propertyId)
-      .populate("ownerID", "name phone")
+      .populate("ownerId", "name phone")
       .populate("addressId", "city district state country");
     if (!propertyData) {
       throw new Error("Property not Found !");

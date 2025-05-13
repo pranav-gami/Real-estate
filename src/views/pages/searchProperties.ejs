@@ -1,0 +1,53 @@
+<main style="padding-top:70px;" data-page="<%=page %>">
+    <div class="section__container" id="property_box">
+        <div class="container">
+            <div class="section__box">
+                <div class="section__main">
+                    <div class="section__header">
+                        <h2 class="section__header_title">Find Your Perfect Property</h2>
+                        <p class="section__header_description">
+                            Discover a collection of premium properties
+                        </p>
+                    </div>
+                    <div class="property-filter-bar">
+                        <div class="search-group">
+                            <div class="search-input-wrapper">
+                                <i class="bi bi-search"></i>
+                                <input type="text" id="filter-search-input"
+                                    placeholder="Search by location, property type..." />
+                            </div>
+                            <button type="submit" class="search_btn" id="filter-search-btn">
+                                <i class="bi bi-search search_icon"></i>Search
+                            </button>
+                        </div>
+                        <div class="filter-group">
+                            <select class="filter-select">
+                                <option value="all">Property-Type</option>
+                                <option value="apartment">Apartment</option>
+                                <option value="villa">Villa</option>
+                                <option value="house">House</option>
+                                <option value="plot">Plots</option>
+                            </select>
+                            <select class="filter-select">
+                                <option value="all">Status</option>
+                                <option value="sale">For Sale</option>
+                                <option value="rent">For Rent</option>
+                            </select>
+                            <select class="filter-select">
+                                <option value="">Sort By</option>
+                                <option value="price_low_high">Price: Low to High</option>
+                                <option value="price_high_low">Price: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="property__menu search_container">
+                        <!-- RENDER CARDS HERE -->
+                        <div class="no_results_message">
+                            <p class="">No Result Found for This</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

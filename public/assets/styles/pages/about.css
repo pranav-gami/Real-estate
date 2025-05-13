@@ -1,0 +1,133 @@
+.about_section {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    background: linear-gradient(135deg, #8c77f4, #7c17aa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+.about_section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: moveBackground ss linear infinite;
+    z-index: 1;
+}
+
+@keyframes moveBackground {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    60% {
+        transform: translate(40px, 60px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.animated-balls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.animated-balls span {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    animation: float 8s linear infinite;
+}
+
+.animated-balls span:nth-child(1) {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 20%;
+    animation-duration: 5s;
+}
+
+.animated-balls span:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    bottom: 10%;
+    left: 50%;
+    animation-duration: 5s;
+}
+
+.animated-balls span:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    top: 30%;
+    right: 15%;
+    animation-duration: 5s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    60% {
+        transform: translate(-60px, 40px) rotate(360deg);
+    }
+
+    1000% {
+        transform: translateY(0, 0) rotate(0deg);
+    }
+}
+
+.about_content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.about_content h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.about_content p {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .about_content h1 {
+        font-size: 2.2rem;
+    }
+
+    .about_content p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about_content h1 {
+        font-size: 1.8rem;
+    }
+
+    .about_content p {
+        font-size: 0.9rem;
+    }
+}

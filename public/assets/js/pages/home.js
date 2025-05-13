@@ -38,11 +38,15 @@ document.addEventListener("DOMContentLoaded", function () {
           "Currently there are no properties available. Please check back later."
         );
         propertyMenu.innerHTML =
-          "<p style='justify-self:center; align-self:center;colspan:3;font-size:2rem'>No properties found.</p>";
+          "<p class='no_results_message'>No properties found.</p>";
         return;
       }
 
-      data.forEach((property) => {
+      // RANDOM SIX PROPERTIES SHOWS TO UI
+      const shuffled = [...data].sort(() => 0.5 - Math.random());
+      const selectedProperties = shuffled.slice(0, 6);
+
+      selectedProperties.forEach((property) => {
         const propertyCard = createPropertyCard(property);
         propertyMenu.appendChild(propertyCard);
       });
@@ -60,11 +64,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function formatPrice(price) {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+    }).format(price);
+  }
+
   function createPropertyCard(property) {
     const card = document.createElement("div");
     card.classList.add("property_card");
 
-    const formattedPrice = Number(property.price).toLocaleString("en-IN");
+    const formattedPrice = formatPrice(property.price);
     const fullAddress = `${property.addressId?.city}, ${property.addressId?.district}, ${property.addressId?.state}`;
 
     const firstImage =
@@ -95,9 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <h3 class="property_title text-truncate d-inline-block" style="max-width: 250px;">
           ${property.title}
         </h3>
-
         <p class="property_location"><i class="bi bi-geo-alt-fill"></i> ${fullAddress}</p>
-
         <div class="property_info">
           ${
             showRoomsParking
@@ -109,10 +118,15 @@ document.addEventListener("DOMContentLoaded", function () {
               : `<div><i class="bi bi-arrows-fullscreen"></i> ${size} sqft</div>`
           }
         </div>
-
         <div class="property_footer">
-          <span class="proprty_price"><i class="bi bi-currency-rupee"></i>${formattedPrice}</span>
-          <a href="/buildstate/property/${
+          <span class="proprty_price">${
+            property.status == "Sale"
+              ? `${formattedPrice}`
+              : `${formattedPrice}  ${
+                  property.propertyType == "Villa" ? "/day" : "/month"
+                }`
+          }</span>
+          <a href="/buildestate/property/${
             property._id
           }"><button class="viewProperty_btn">View</button></a>
         </div>
@@ -122,11 +136,33 @@ document.addEventListener("DOMContentLoaded", function () {
     const eyeBtn = card.querySelector(".view_btn");
     eyeBtn.addEventListener("click", function () {
       const propertyId = this.getAttribute("data-id");
-      window.location.href = `/buildstate/property/${propertyId}`;
+      window.location.href = `/buildestate/property/${propertyId}`;
     });
 
     return card;
   }
+
+  // SEARCH BTN LOGIC
+  const searchInput = document.querySelector(".hero__search input");
+  const searchButton = document.querySelector(".homesearch_btn");
+
+  function handleSearch() {
+    const query = searchInput.value.trim();
+    if (query) {
+      window.location.href = `/buildestate/properties/search?q=${encodeURIComponent(
+        query
+      )}`;
+    }
+  }
+  searchInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleSearch();
+    }
+  });
+  searchButton.addEventListener("click", function () {
+    handleSearch();
+  });
 
   fetchProperties();
 });
