@@ -290,6 +290,20 @@ async function seed() {
         ownerId: users[1]._id,
         addressId: addresses[2]._id,
       },
+      {
+        title: "Plot area in Sanand",
+        description:
+          "Residential plot available for sale, ideal for building your dream home.surrounded by peaceful surroundings.",
+        price: 2300000,
+        location:
+          "https://www.google.co.in/maps/place/Furrisic+Infotech/@23.009359,72.5229264,17z/data=!4m14!1m7!3m6!1s0x395e853d43a0a7f5:0x66067c41833aadbf!2sFurrisic+Infotech!8m2!3d23.009359!4d72.5229264!16s%2Fg%2F11v5d5rbgm!3m5!1s0x395e853d43a0a7f5:0x66067c41833aadbf!8m2!3d23.009359!4d72.5229264!16s%2Fg%2F11v5d5rbgm?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D",
+        size: "1300",
+        propertyType: "Plot",
+        status: "Sale",
+        images: ["plot2.2.jpeg", "plot2.1.jpeg"],
+        ownerId: users[1]._id,
+        addressId: addresses[2]._id,
+      },
     ]);
 
     // -------- SEED INQUIRIES --------

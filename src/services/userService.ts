@@ -1,6 +1,8 @@
 import { Request } from "express";
 import bcrypt from "bcrypt";
 import User from "../models/user.model";
+import Property from "../models/property.model";
+import Inquiry from "../models/inquiry.model";
 
 // CREATE-USER SERVICE
 export const createUser = async (req: Request) => {
@@ -49,10 +51,24 @@ export const getUserData = async (req: Request, all: Boolean) => {
       }
     } else {
       const userId = req.params.id;
-      userData = await User.findById(userId);
-      if (!userData) {
+      const user = await User.findById(userId);
+      if (!user) {
         throw new Error("User doesn't Exists..");
       }
+      const userObject: any = user.toObject();
+      if (user.role === "AGENT") {
+        const properties = await Property.find({
+          ownerId: user._id,
+        }).populate("addressId", "district");
+        userObject.properties = properties;
+      } else if (user.role === "USER") {
+        const inquiries = await Inquiry.find({ userId: user._id }).populate(
+          "propertyId",
+          "title"
+        );
+        userObject.inquiries = inquiries;
+      }
+      userData = userObject;
     }
     return userData;
   } catch (err) {

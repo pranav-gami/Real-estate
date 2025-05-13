@@ -22,16 +22,14 @@ var KTAppUserList = (function () {
           </div>
         </td>
         <td class="d-flex align-items-center">
-            <a href="admin/editproduct/${
-              user._id
-            }" class="symbol symbol-50px me-2">
+            <a href="/admin/users/${user._id}" class="symbol symbol-50px me-2">
               <span class="symbol-label" style="background-image:url('/assets/media/users/${
-                user.image
+                user.image ? user.image : "defualt_user.jpeg"
               }')"></span>
             </a>
           <div class="d-flex flex-column">
             <a href="/admin/users/${
-              user.id
+              user._id
             }" class="text-gray-800 text-hover-primary mb-1">${user.name}</a>
             <span>${user.email}</span>
           </div>

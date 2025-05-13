@@ -57,18 +57,12 @@
                             <!--begin::Avatar-->
                             <!--begin::Avatar-->
                             <div class="card card-flush py-4">
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h2>Image Preview</h2>
-                                    </div>
-                                </div>
                                 <div class="card-body text-center pt-0">
                                     <div class="mb-3 w-150px h-150px rounded shadow-sm mx-auto">
                                         <div id="imagePreview" class="w-150px h-150px rounded shadow-sm mx-auto">
-                                            <img class="user_img" src="" alt="">
+                                            <img class="user_img" style="height: 150px; width: 150px;" src="" alt="">
                                         </div>
                                     </div>
-                                    <div class="text-muted fs-7">Preview of the image loaded from JavaScript.</div>
                                 </div>
                             </div>
 
@@ -121,54 +115,51 @@
             <div class="flex-lg-row-fluid ms-lg-15">
                 <!--begin:::Tabs-->
                 <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8">
-                    <!--begin:::Tab item-->
+                    <!-- Overview Tab -->
                     <li class="nav-item">
                         <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"
                             href="#kt_user_view_overview_tab">Overview</a>
                     </li>
-                    <!--end:::Tab item-->
-                    <!--begin:::Tab item-->
-                    <li class="nav-item">
+
+                    <!-- Inquiry Details Tab -->
+                    <li class="nav-item" style="display: none;">
                         <a class="nav-link text-active-primary pb-4" data-kt-countup-tabs="true" data-bs-toggle="tab"
-                            href="#kt_user_view_overview_security">Cart Details</a>
+                            href="#kt_user_view_overview_security">Inquiry Details</a>
                     </li>
-                    <!--end:::Tab item-->
+
+                    <!-- Properties Tab (Initially hidden) -->
+                    <li class="nav-item" id="properties-tab" style="display: none;">
+                        <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
+                            href="#kt_user_view_properties_tab">Properties</a>
+                    </li>
                 </ul>
                 <!--end:::Tabs-->
                 <!--begin:::Tab content-->
                 <div class="tab-content" id="myTabContent">
-                    <!--begin:::Tab pane-->
+                    <!--begin:::Overview Tab-->
                     <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">
-                        <!--begin::Card-->
                         <div class="card card-flush mb-6 mb-xl-9">
-                            <!--begin::Card header-->
                             <div class="card-header mt-6">
-                                <!--begin::Card title-->
-                                <div class="card-title flex-column">
-                                    <h2 class="mb-1">User's Details</h2>
+                                <div class="card-title flex-column w-100" style="border-bottom: 1px solid #a4a4a4;">
+                                    <h2 class="mb-1" style="color: #565656;">User's Details</h2>
                                     <div class="fs-6 fw-semibold text-muted"></div>
                                 </div>
-                                <!--end::Card title-->
                             </div>
-                            <!--end::Card header-->
-                            <!--begin::Card body-->
                             <div class="card-body p-9 pt-4">
                                 <div class="table-responsive">
-                                    <!--begin::Table-->
                                     <table class="table align-middle table-row-dashed gy-5"
                                         id="kt_table_users_login_session">
-                                        <!--begin::Table body-->
                                         <tbody class="fs-6 fw-semibold text-gray-600">
                                             <tr>
                                                 <td>Username</td>
-                                                <td class="username">Abc/td>
+                                                <td class="username">Abc</td>
                                             </tr>
                                             <tr>
                                                 <td>Email</td>
                                                 <td class="email">smith@kpmg.com</td>
                                             </tr>
                                             <tr>
-                                                <td>Is Active??</td>
+                                                <td>Is Active?</td>
                                                 <td class="isAcitve">YES</td>
                                             </tr>
                                             <tr>
@@ -177,70 +168,79 @@
                                             </tr>
                                             <tr>
                                                 <td>Phone</td>
-                                                <td class="phone">Amd</td>
+                                                <td class="phone">9876543210</td>
                                             </tr>
                                         </tbody>
-                                        <!--end::Table body-->
                                     </table>
-                                    <!--end::Table-->
                                 </div>
                             </div>
-                            <!--end::Card body-->
                         </div>
-                        <!--end::Card-->
                     </div>
-                    <!--end:::Tab pane-->
-                    <!--begin:::Tab pane-->
-                    <div class="tab-pane fade" id="kt_user_view_overview_security" role="tabpanel">
-                        <!--begin::Card-->
-                        <div class="card pt-4 mb-6 mb-xl-9">
-                            <!--begin::Card header-->
-                            <div class="card-header border-0">
-                                <!--begin::Card title-->
-                                <div class="card-title">
-                                    <h2>Cart Details</h2>
-                                </div>
-                                <!--end::Card title-->
-                            </div>
-                            <!--end::Card header-->
 
-                            <!--begin::Card body-->
+                    <!--begin:::Inquiry Details Tab-->
+                    <div class="tab-pane fade" id="kt_user_view_overview_security" role="tabpanel">
+                        <div class="card pt-4 mb-6 mb-xl-9">
+                            <div class="card-header border-0">
+                                <div class="card-title w-100" style="border-bottom: 1px solid #a4a4a4;">
+                                    <h2 class="mb-1">Inquiry Details</h2>
+                                </div>
+                            </div>
                             <div class="card-body pt-0 pb-5">
-                                <!--begin::Table wrapper-->
                                 <div class="table-responsive">
                                     <table class="table table-row-dashed align-middle gs-0 gy-4">
                                         <thead>
-                                            <tr class="fw-bold text-muted bg-light">
-                                                <th class="min-w-150px">Product Name</th>
-                                                <th class="min-w-100px">Quantity</th>
-                                                <th class="min-w-100px">Price</th>
-                                                <th class="min-w-100px">Subtotal</th>
+                                            <tr class="fw-bold text-muted">
+                                                <th class="min-w-200px">Property Name</th>
+                                                <th class="min-w-300px">Message</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="cart-details-body">
+                                        <tbody id="inquiry-details-body">
                                             <tr>
-                                                <td>Hp laptop</td>
-                                                <td>1</td>
-                                                <td>₹57,999</td>
-                                                <td>₹57,999</td>
+                                                <td class="text-truncate mw-100px inquiry_property"
+                                                    title="3BHK Luxury Villa in LA">3BHK Luxury Villa in LA</td>
+                                                <td class="question">Is this still available?</td>
                                             </tr>
                                         </tbody>
-                                        <tfoot>
-                                            <tr class="fw-bold text-muted d-done">
-                                                <td colspan="3" class="text-end">Total</td>
-                                                <td id="cart-total">₹0</td>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
-                                <!--end::Table wrapper-->
                             </div>
-                            <!--end::Card body-->
                         </div>
-                        <!--end::Card-->
                     </div>
 
-                    <!--end:::Tab pane-->
+                    <!--begin:::Properties Tab (Hidden by Default, Show if Agent)-->
+                    <div class="tab-pane fade" id="kt_user_view_properties_tab" role="tabpanel">
+                        <div class="card pt-4 mb-6 mb-xl-9">
+                            <div class="card-header border-0">
+                                <div class="card-title w-100" style="border-bottom: 1px solid #a4a4a4;">
+                                    <h2 class="mb-1" style="color: #565656;">Agent's Properties</h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0 pb-5">
+                                <div class="table-responsive">
+                                    <table class="table table-row-dashed align-middle gs-0 gy-4">
+                                        <thead>
+                                            <tr class="fw-bold text-muted">
+                                                <th class="min-w-150px">Title</th>
+                                                <th class="min-w-80px">Type</th>
+                                                <th class="min-w-100px">City</th>
+                                                <th class="min-w-120px">Price</th>
+                                                <th class="min-w-80px">For</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="properties-body">
+                                            <tr>
+                                                <td>Luxury Villa in Miami</td>
+                                                <td>Villa</td>
+                                                <td>Miami</td>
+                                                <td>₹2,50,00,000</td>
+                                                <td>Sale</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!--end:::Tab content-->
             </div>

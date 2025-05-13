@@ -44,6 +44,17 @@ router.get("/admin/users/:id", (req, res) => {
   });
 });
 
+router.get("/admin/properties", (_req, res) => {
+  res.render("pages/admin/propertyListing", {
+    layout: "layouts/adminLayout",
+    styles: `<link href="/assets/styles/admin/datatables.bundle.css" rel="stylesheet" type="text/css" />`,
+    scripts: `
+        <script src="/assets/js/admin/propertyListing.js"></script>`,
+    vendor: `
+        <script src="/assets/js/admin/datatables.bundle.js"></script>`,
+  });
+});
+
 // USER ROUTES
 router.get("/signup", (_req, res) => {
   res.render("pages/signupUser", { layout: false });

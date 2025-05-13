@@ -5,24 +5,37 @@ const KTUserViewDetails = (function () {
   const updateUserDetailsUI = (data) => {
     const imgEle = document.querySelector(".user_img");
     if (imgEle) {
-      imgEle.src = `/assets/media/users/${data.image}`;
+      imgEle.src = `/assets/media/users/${
+        data.image ? data.image : "defualt_user.jpeg"
+      }`;
     }
 
     document
       .querySelectorAll(".username")
       .forEach((ele) => (ele.textContent = data.name));
     document.querySelector(".language").textContent = "Hindi,English";
-    document.querySelector(".address").textContent = data.city;
-    document.querySelectorAll(".email").forEach((el) => {
-      el.textContent = data.email;
-    });
-    document.querySelectorAll(".role").forEach((el) => {
-      el.textContent = data.role;
-    });
-    document.querySelectorAll(".isAcitve").forEach((el) => {
-      el.textContent = data.isActive ? "YES" : "NO";
-    });
+    document.querySelector(".address").textContent = data.city || "N/A";
+    document
+      .querySelectorAll(".email")
+      .forEach((el) => (el.textContent = data.email));
+    document
+      .querySelectorAll(".role")
+      .forEach((el) => (el.textContent = data.role));
+    document
+      .querySelectorAll(".isAcitve")
+      .forEach((el) => (el.textContent = data.isActive ? "YES" : "NO"));
     document.querySelector(".phone").textContent = data.phone;
+
+    // Handle tab visibility and data based on role
+    if (data.role.toLowerCase() === "agent") {
+      document.getElementById("properties-tab").style.display = "block";
+      loadAgentProperties(data.properties); // Load properties if agent
+    } else if (data.role.toLowerCase() === "user") {
+      document.querySelector(
+        '[href="#kt_user_view_overview_security"]'
+      ).parentElement.style.display = "block";
+      loadUserInquiries(data.inquiries);
+    }
   };
 
   // Fetch and load user details from API
@@ -34,90 +47,102 @@ const KTUserViewDetails = (function () {
       if (result.success) {
         updateUserDetailsUI(result.data);
       } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops!",
-          text: "Failed to load user data. Please try again later.",
-        });
+        Swal.fire(
+          "Error",
+          "Failed to load user data. Please try again later.",
+          "error"
+        );
       }
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Network Error",
-        text: "Something went wrong while fetching user details.",
-      });
+      Swal.fire(
+        "Network Error",
+        "Something went wrong while fetching user details.",
+        "error"
+      );
       console.error("Error fetching user details:", error);
     }
   };
 
-  //   Load Dyanamically Cart details
-  //   async function loadCartDetails(userId) {
-  //     try {
-  //       const response = await fetch(
-  //         `/api/cartProducts/getCartByUserId/${userId}`
-  //       );
-  //       const result = await response.json();
+  // Load Inquiries for regular user
+  const loadUserInquiries = async (inquiries) => {
+    try {
+      const tbody = document.getElementById("inquiry-details-body");
+      tbody.innerHTML = "";
 
-  //       if (result.success) {
-  //         const cartItems = result.data;
-  //         const tbody = document.getElementById("cart-details-body");
-  //         const totalElement = document.getElementById("cart-total");
+      if (inquiries.length > 0) {
+        inquiries.forEach((inquiry) => {
+          const row = `
+            <tr style="color:#565656">
+              <td class="text-truncate mw-100px inquiry_property" title="${
+                inquiry.propertyId?.title || "N/A"
+              }">
+                ${inquiry.propertyId?.title || "N/A"}
+              </td>
+              <td class="question">${inquiry.message}</td>
+            </tr>`;
+          tbody.insertAdjacentHTML("beforeend", row);
+        });
+      } else {
+        tbody.innerHTML = `<tr><td colspan="2" class="text-center fs-2 mt-3 text-muted">No inquiries found.</td></tr>`;
+      }
+    } catch (error) {
+      console.error("Error loading inquiries:", error);
+      Swal.fire("Error", "Failed to load inquiries.", "error");
+    }
+  };
 
-  //         tbody.innerHTML = "";
-  //         let total = 0;
-  //         if (cartItems.length != 0) {
-  //           cartItems.forEach((item) => {
-  //             const { title, price } = item.product;
-  //             const quantity = item.quantity;
-  //             const subtotal = price * quantity;
-  //             total += subtotal;
+  function formatPrice(price) {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+    }).format(price);
+  }
 
-  //             const row = `
-  //                 <tr>
-  //                 <td>${title}</td>
-  //                 <td>${quantity}</td>
-  //                 <td>₹${price.toLocaleString()}</td>
-  //                 <td>₹${subtotal.toLocaleString()}</td>
-  //                 </tr>
-  //                 `;
-  //             tbody.insertAdjacentHTML("beforeend", row);
-  //           });
-  //           totalElement.textContent = `₹${total.toLocaleString()}`;
-  //         } else {
-  //           tbody.innerHTML =
-  //             "<h4 class='p-4 pt-5 text-muted'>User's Cart is Empty!</h4>";
-  //         }
-  //       } else {
-  //         Swal.fire("Error", "Failed to fetch cart items", "error");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error loading cart:", error);
-  //       Swal.fire(
-  //         "Error",
-  //         "An error occurred while fetching cart items.",
-  //         "error"
-  //       );
-  //     }
-  //   }
+  // Load Properties for Agent
+  const loadAgentProperties = async (properties) => {
+    try {
+      const tbody = document.getElementById("properties-body");
+      tbody.innerHTML = "";
+
+      if (properties.length > 0) {
+        properties.forEach((property) => {
+          const row = `
+            <tr style="color:#565656">
+              <td class="text-truncate mw-150px" >${property.title}</td>
+              <td>${property.propertyType}</td>
+              <td>${property.addressId.district}</td>
+              <td>${formatPrice(property.price)}</td>
+              <td>${property.status}</td>
+            </tr>`;
+          tbody.insertAdjacentHTML("beforeend", row);
+        });
+      } else {
+        tbody.innerHTML = `<tr><td colspan="5" class="text-center fs-2 mt-3 text-muted">No properties listed.</td></tr>`;
+      }
+    } catch (error) {
+      console.error("Error loading properties:", error);
+      Swal.fire("Error", "Failed to load agent properties.", "error");
+    }
+  };
 
   return {
     init: function () {
       const userId = document.querySelector("#kt_app_content").dataset.userId;
       if (userId) {
         loadUserDetails(userId);
-        // loadCartDetails(userId);
       } else {
-        Swal.fire({
-          icon: "warning",
-          title: "Missing User ID",
-          text: "No user ID found in the URL. Cannot load user details.",
-        });
-        console.warn("No user ID found in URL parameters.");
+        Swal.fire(
+          "Missing User ID",
+          "No user ID found. Cannot load user details.",
+          "warning"
+        );
+        console.warn("No user ID found in dataset.");
       }
     },
   };
 })();
 
+// Initialize on DOM ready
 KTUtil.onDOMContentLoaded(function () {
   KTUserViewDetails.init();
 });

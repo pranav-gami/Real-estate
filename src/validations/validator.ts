@@ -67,7 +67,7 @@ const userSchema = Joi.object({
         "Password should contain 8-12 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character (@, $, *)",
     })
     .required(),
-  role: Joi.string().valid("ADMIN", "USER").default("USER"),
+  role: Joi.string().valid("ADMIN", "USER" ,"AGENT").default("USER"),
   city: Joi.string().optional(),
   phone: Joi.string()
     .length(10)

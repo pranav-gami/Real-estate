@@ -7,7 +7,7 @@ export interface IUser extends Document {
   phone: string;
   city: string;
   image?: String;
-  role: "USER" | "ADMIN";
+  role: "USER" | "ADMIN" | "AGENT";
   isActive?: Boolean;
 }
 
@@ -20,7 +20,7 @@ const userSchema = new Schema<IUser>({
   image: { type: String },
   role: {
     type: String,
-    enum: ["USER", "ADMIN"],
+    enum: ["USER", "ADMIN", "AGENT"],
     default: "USER",
   },
   isActive: { type: Boolean, default: false },

@@ -4564,7 +4564,9 @@ var KTUserMenu = (function () {
       // Set Avatar Text
       const avatarImg = document.querySelectorAll(".header_img");
       avatarImg.forEach((img) => {
-        img.src = `/assets/media/users/${user.image}`;
+        img.src = `/assets/media/users/${
+          user.image ? user.image : "defualt_user.jpeg"
+        }`;
       });
     }
   };
@@ -4597,9 +4599,9 @@ const KTThemeSidebarSwitcher = (() => {
 
     // Update logo based on theme
     if (theme === "dark") {
-      logoImg.src = "assets/media/logos/e-com-dark.png";
+      logoImg.src = "/assets/media/logos/e-com-dark.png";
     } else if (theme === "light") {
-      logoImg.src = "assets/media/logos/e-com-light.png"; // Make sure this exists
+      logoImg.src = "/assets/media/logos/e-com-light.png";
     }
   };
 
