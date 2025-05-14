@@ -67,7 +67,7 @@ const userSchema = Joi.object({
         "Password should contain 8-12 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character (@, $, *)",
     })
     .required(),
-  role: Joi.string().valid("ADMIN", "USER" ,"AGENT").default("USER"),
+  role: Joi.string().valid("ADMIN", "USER", "AGENT").default("USER"),
   city: Joi.string().optional(),
   phone: Joi.string()
     .length(10)
@@ -96,7 +96,7 @@ const propertySchema = Joi.object({
   title: Joi.string().min(10).max(100).required(),
   decription: Joi.string().required(),
   price: Joi.number().required(),
-  location: Joi.string().required(),
+  location: Joi.string().optional(),
   size: Joi.string().required(),
   bedrooms: Joi.number().required(),
   parking: Joi.number().required(),
@@ -124,6 +124,7 @@ export const validatePropertyBody = (
   res: Response,
   next: NextFunction
 ) => {
+  console.log(req.body);
   const { error } = propertySchema.validate(req.body);
   if (error) {
     res.status(400).json({ success: false, message: error.details[0].message });

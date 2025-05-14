@@ -24,15 +24,13 @@ var KTAppRealEstateProperties = (function () {
         </td>
         <td>
           <div class="d-flex align-items-center">
-            <a href="/admin/editproperty/${
-              property._id
-            }" class="symbol symbol-50px">
+            <a href="" class="symbol symbol-50px">
               <span class="symbol-label" style="background-image: url('/assets/media/properties/${
                 property.images?.[0] || "default.jpg"
               }'); background-size: cover;"></span>
             </a>
             <div class="ms-5">
-              <a href="/admin/editproperty/${property._id}"
+              <a href="/admin/properties/edit/${property._id}"
                 class="text-gray-800 text-hover-primary fs-5 fw-bold text-truncate d-inline-block"
                 style="max-width: 150px"
                 title="${property.title}">
@@ -46,7 +44,7 @@ var KTAppRealEstateProperties = (function () {
             property.description || ""
           }</span>
         </td>
-        <td class="text-end pe-0">${formatPrice(property.price)}₹</td>
+        <td class="text-end pe-0">${formatPrice(property.price)}</td>
         <td class="text-end pe-0">${property.propertyType}</td>
         <td class="text-center pe-0">
           <div class="badge badge-light-primary">${property.status}</div>
@@ -68,7 +66,7 @@ var KTAppRealEstateProperties = (function () {
           <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                data-kt-menu="true">
             <div class="menu-item px-3">
-              <a href="/admin/editproperty/${
+              <a href="/admin/properties/edit/${
                 property._id
               }" class="menu-link px-3">Edit</a>
             </div>
@@ -109,7 +107,7 @@ var KTAppRealEstateProperties = (function () {
           });
 
           if (result.isConfirmed) {
-            await fetch(`/api/property/deleteProperty/${id}`, {
+            await fetch(`/api/property/delete/${id}`, {
               method: "DELETE",
             });
             Swal.fire({
@@ -135,48 +133,31 @@ var KTAppRealEstateProperties = (function () {
   }
 
   function renderTable(properties) {
-    const tableBody = tableElement.querySelector("tbody");
-    tableBody.innerHTML = properties.map(renderPropertyRow).join("");
+    tableElement.querySelector("tbody").innerHTML = "";
 
     if ($.fn.DataTable.isDataTable(tableElement)) {
-      dataTable.destroy();
-    }
+      dataTable.clear().draw();
+    } else {
+      dataTable = $(tableElement).DataTable({
+        info: false,
+        order: [],
+        pageLength: 10,
+        columnDefs: [{ orderable: false, targets: [0, 6] }],
+      });
 
-    dataTable = $(tableElement).DataTable({
-      info: false,
-      order: [],
-      pageLength: 10,
-      columnDefs: [{ orderable: false, targets: [0, 6] }], // Fixed index here
-    });
-
-    const searchInput = document.querySelector(
-      '[data-kt-property-filter="search"]'
-    );
-
-    if (searchInput) {
-      searchInput.addEventListener("keyup", (e) => {
-        // dataTable.column(1).search(e.target.value).draw();
-        const value = e.target.value.toLowerCase();
-        $.fn.dataTable.ext.search = [];
-
-        // Add custom filter for multiple columns
-        $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
-          return (
-            data[1].toLowerCase().includes(value) || // Property title
-            data[4].toLowerCase().includes(value) || // Type
-            data[5].toLowerCase().includes(value) // For (sale/rent)
-          );
-        });
-
-        // Redraw table with new filters
-        dataTable.draw();
+      dataTable.on("draw", () => {
+        handleDeleteRows();
+        KTMenu.createInstances();
       });
     }
 
-    dataTable.on("draw", () => {
-      handleDeleteRows();
-      KTMenu.createInstances();
+    properties.forEach((property) => {
+      const rowHTML = renderPropertyRow(property);
+      const rowElement = $(rowHTML);
+      dataTable.row.add(rowElement);
     });
+
+    dataTable.draw();
 
     handleDeleteRows();
     KTMenu.createInstances();
@@ -184,7 +165,6 @@ var KTAppRealEstateProperties = (function () {
 
   async function loadProperties() {
     try {
-      const token = localStorage.getItem("token");
       const res = await fetch("/api/property/get");
       const result = await res.json();
       allProperties = result.data;
@@ -194,11 +174,54 @@ var KTAppRealEstateProperties = (function () {
     }
   }
 
+  function handleSearchFilter() {
+    const searchInput = document.querySelector(
+      '[data-kt-property-filter="search"]'
+    );
+
+    if (searchInput) {
+      searchInput.addEventListener("keyup", (e) => {
+        const value = e.target.value.toLowerCase();
+        const filteredProperties = allProperties.filter(
+          (property) =>
+            property.title.toLowerCase().includes(value) ||
+            property.propertyType.toLowerCase().includes(value) ||
+            property.status.toLowerCase().includes(value)
+        );
+        renderTable(filteredProperties);
+      });
+    }
+  }
+
+  function handlePriceFilter() {
+    const $select = $("#propertyFilter");
+
+    if (!$select.length) {
+      console.error("Price filter select element not found!");
+      return;
+    }
+
+    $select.on("change", function () {
+      const selectedValue = this.value;
+      let sortedProperties = [...allProperties];
+
+      if (selectedValue === "lowtohigh") {
+        sortedProperties.sort((a, b) => a.price - b.price);
+      } else if (selectedValue === "hightolow") {
+        sortedProperties.sort((a, b) => b.price - a.price);
+      }
+
+      renderTable(sortedProperties);
+    });
+  }
+
   return {
     init: function () {
       tableElement = document.querySelector("#kt_properties_table");
       if (!tableElement) return;
       loadProperties();
+      handleSearchFilter();
+      handlePriceFilter();
     },
   };
 })();

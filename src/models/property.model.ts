@@ -19,7 +19,7 @@ const propertySchema = new Schema<IProperty>({
   title: { type: String, required: true },
   description: { type: String, required: true },
   price: { type: Number, required: true },
-  location: { type: String, required: true },
+  location: { type: String },
   size: { type: String, required: true },
   bedrooms: { type: Number },
   parking: { type: Number },

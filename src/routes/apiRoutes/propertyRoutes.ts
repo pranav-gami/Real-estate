@@ -20,7 +20,7 @@ router.post(
   "/add",
   verifyToken,
   validatePropertyBody,
-  upload.array("images"),
+  upload.array("images",5),
   addProperty
 );
 router.get("/get", getProperties);
@@ -30,7 +30,7 @@ router.put(
   validateParamsID,
   verifyToken,
   validatePropertyBody,
-  upload.array("images"),
+  upload.array("images",5),
   updatePropertyById
 );
 router.delete("/delete/:id", validateParamsID, verifyToken, deletePropery);

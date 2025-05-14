@@ -55,6 +55,29 @@ router.get("/admin/properties", (_req, res) => {
   });
 });
 
+router.get("/admin/properties/add", (_req, res) => {
+  res.render("pages/admin/addProperty", {
+    layout: "layouts/adminLayout",
+    styles: `<link href="/assets/styles/admin/datatables.bundle.css" rel="stylesheet" type="text/css" />`,
+    scripts: `
+        <script src="/assets/js/admin/addProperty.js"></script>
+    `,
+    vendor: `
+        <script src="/assets/js/admin/datatables.bundle.js"></script>`,
+  });
+});
+
+router.get("/admin/properties/edit/:id", (_req, res) => {
+  res.render("pages/admin/editProperty", {
+    layout: "layouts/adminLayout",
+    styles: `<link href="/assets/styles/admin/datatables.bundle.css" rel="stylesheet" type="text/css" />`,
+    scripts: `
+    `,
+    vendor: `
+        <script src="/assets/js/admin/datatables.bundle.js"></script>`,
+  });
+});
+
 // USER ROUTES
 router.get("/signup", (_req, res) => {
   res.render("pages/signupUser", { layout: false });

@@ -26,7 +26,7 @@ export const createProperty = async (req: Request) => {
     if (images.length < 2) {
       throw new Error("Atleast two images required..");
     }
-
+    console.log(req.body);
     // Validate required fields
     if (
       !title ||

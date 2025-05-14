@@ -1,0 +1,218 @@
+<div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+    <!--begin::Toolbar container-->
+    <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
+        <!--begin::Page title-->
+        <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+            <!--begin::Title-->
+            <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                Property Form</h1>
+            <!--end::Title-->
+            <!--begin::Breadcrumb-->
+            <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-muted">
+                    <a href="/admin/dashboard" class="text-muted text-hover-primary">Home</a>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item">
+                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-muted">
+                    <a href="/admin/dashboard" class="text-muted text-hover-primary">BuildEstate</a>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item">
+                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                </li>
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-muted">Admin</li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item">
+                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-muted">Add Property</li>
+                <!--end::Item-->
+            </ul>
+            <!--end::Breadcrumb-->
+        </div>
+        <!--end::Page title-->
+    </div>
+    <!--end::Toolbar container-->
+</div>
+<!--end::Toolbar-->
+<!--begin::Content-->
+<div id="kt_app_content" class="app-content flex-column-fluid">
+    <!--begin::Content container-->
+    <div id="kt_app_content_container" class="app-container container-xxl">
+        <!--begin::Form-->
+        <!-- Inside your form tag: -->
+        <form id="kt_ecommerce_add_property_form" class="form d-flex flex-column flex-lg-row"
+            data-kt-redirect="/admin/properties">
+            <!--begin::Aside column-->
+            <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+                <!--begin::Thumbnail settings-->
+                <div class="card card-flush py-4">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2>Upload Images</h2>
+                        </div>
+                    </div>
+                    <div class="card-body text-center pt-0 fv-row">
+                        <input class="form-control mb-3" type="file" name="property_images" id="property_images"
+                            accept=".jpg, .jpeg" multiple min="2" max="5" />
+                        <div class="form-text mb-5">Upload 2 to 5 JPEG images.</div>
+                        <!-- Preview Container -->
+                        <div id="image_preview_container" class="d-flex flex-wrap justify-content-start gap-3"></div>
+                    </div>
+                </div>
+                <!-- Property details -->
+                <div class="card card-flush py-4">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2>Details</h2>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="fv-row mb-5">
+                            <label class="form-label required">Owner / Agent</label>
+                            <select class="form-select" id="ownerAgentSelect" name="ownerId" data-control="select2"
+                                data-placeholder="Select an owner or agent">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="fv-row mb-5">
+                            <label class="form-label required">Property Type</label>
+                            <select class="form-select" name="propertyType" id="propertyTypeSelect"
+                                data-control="select2" data-placeholder="Select type">
+                                <option></option>
+                                <option value="Apartment">Apartment</option>
+                                <option value="House">House</option>
+                                <option value="Villa">Villa</option>
+                                <option value="Plot">Plot</option>
+                            </select>
+                        </div>
+
+                        <div class="fv-row mb-5">
+                            <label class="form-label">Bedrooms (Optional)</label>
+                            <input type="number" name="bedrooms" class="form-control" placeholder="Number of bedrooms"
+                                min="0" />
+                        </div>
+
+                        <div class="fv-row mb-5">
+                            <label class="form-label">Parking (Optional)</label>
+                            <input type="number" name="parking" class="form-control"
+                                placeholder="Number of parking spots" min="0" />
+                        </div>
+
+                        <div class="fv-row mb-5">
+                            <label class="form-label">Location</label>
+                            <input type="string" name="location" class="form-control"
+                                placeholder="Map-link for Pin exact location" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--begin::Main column-->
+            <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                <!-- Tabs -->
+                <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-n2">
+                    <li class="nav-item">
+                        <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"
+                            href="#kt_ecommerce_add_property_general">Other Information</a>
+                    </li>
+                </ul>
+                <!-- Tab content -->
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="kt_ecommerce_add_property_general" role="tabpanel">
+                        <div class="d-flex flex-column gap-7 gap-lg-10">
+                            <!-- Property Information -->
+                            <div class="card card-flush py-4">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Property Information</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="fv-row mb-7">
+                                        <label class="required form-label">Property Title</label>
+                                        <input type="text" name="property_name" class="form-control"
+                                            placeholder="Property title" />
+                                    </div>
+
+                                    <div class="fv-row mb-7">
+                                        <label class="form-label required">Description</label>
+                                        <input type="text" name="property_description" class="form-control"
+                                            placeholder="Short description..." />
+                                    </div>
+
+                                    <div class="fv-row mb-7">
+                                        <label class="form-label required">Size</label>
+                                        <input type="number" name="property_size" class="form-control"
+                                            placeholder="Size in square feet" />
+                                        <div class="text-muted fs-7">Size of the property in valid numbers.</div>
+                                    </div>
+
+                                    <div class="fv-row mb-7">
+                                        <label class="form-label required">Select Area Of Property</label>
+                                        <select class="form-select" id="areaselect" name="addressId"
+                                            data-control="select2" data-placeholder="Select area, city location">
+                                            <option></option>
+                                        </select>
+                                        <div class="text-muted fs-7">Select the area where the property is located.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Pricing -->
+                            <div class="card card-flush py-4">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Pricing & Property For</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="fv-row mb-7">
+                                        <label class="required form-label">Price</label>
+                                        <input type="number" name="price" class="form-control"
+                                            placeholder="Property price" step="0.1" />
+                                        <div class="text-muted fs-7">Price for sale or rent(Daily/Monthly)</div>
+                                    </div>
+                                    <div class="fv-row mb-7">
+                                        <label class="required form-label">Property For</label>
+                                        <select name="listingType" id="listingTypeSelect" class="form-select"
+                                            data-control="select2" data-placeholder="Select listing type">
+                                            <option></option>
+                                            <option value="Sale">Sale</option>
+                                            <option value="Rent">Rent</option>
+                                        </select>
+                                        <div class="text-muted fs-7">Specify whether property is for sale or rent.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Submit -->
+                <div class="d-flex justify-content-end">
+                    <button type="submit" id="kt_ecommerce_add_properyt_submit" class="btn btn-primary">
+                        <span class="indicator-label">Add Property</span>
+                        <span class="indicator-progress">Please wait...
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                    </button>
+                    <a href="/admin/properties" id="kt_ecommerce_add_property_cancel"
+                        class="btn btn-light me-5">Cancel</a>
+                </div>
+            </div>
+        </form>
+        <!--end::Form-->
+    </div>
+    <!--end::Content container-->
+</div>
